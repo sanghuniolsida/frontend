@@ -1,14 +1,12 @@
+// App.js
 import React from 'react';
 import './App.css';
+import LoginPage from './pages/LoginPage'; // 경로에 맞게 import
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-      </header>
+    <div className="app-wrapper">
+      <LoginPage />
     </div>
   );
 }

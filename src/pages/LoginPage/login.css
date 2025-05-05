@@ -1,0 +1,103 @@
+/* 전체 앱 크기 제한 */
+.app-wrapper {
+    width: 100%;
+    max-width: 390px;
+    height: 100vh;
+    margin: 0 auto;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* 상단 영역 */
+  .top-section {
+    background-color: #F6DF7B;
+    height: 483px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 60px;
+    text-align: center;
+  }
+  
+  /* 로고 텍스트 */
+  .top-section h1 {
+    font-size: 36px;
+    margin-top: 100px;
+    line-height: 1.4;
+  }
+  
+  /* 로고를 감싸는 원 */
+  .logo-circle {
+    width: 140px;
+    height: 134px;
+    border-radius: 50%;
+    background-color: #FFF7D6;
+    border: 4px solid #F6DF7B; /* stroke 효과 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    overflow: hidden;
+    margin-top: 100px;
+  }
+  
+  /* 로고 이미지 */
+  .logo-img {
+    width: 130px;
+    height: 130px;
+    object-fit: cover;
+  }
+  
+/* 볼록한 하단 곡선 */
+.bottom-curve {
+    position: absolute;
+    bottom: -108px; /* 아래로 내리기 */
+    width: 391px;
+    height: 200px;
+    background-color: #F6DF7B;
+    border-radius: 50%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+  }
+  
+  /* 하단 섹션 */
+  .bottom-section {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 60px;
+  }
+  
+  /* 구글 로그인 버튼 예시 */
+  .google-login {
+    padding: 12px 24px;
+    border: 2px solid #333;
+    border-radius: 30px;
+    background: white;
+    font-size: 16px;
+    color: #4285F4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 70%;
+  }
+  
+  .title {
+    font-family: 'Gugi', cursive;
+    color: 1D1D1D;
+    margin-bottom: 35px;
+    text-align: center;
+    font-weight: 400; /*이걸 지우면 Bold체로 바뀜*/
+  }
+  
+  .google-icon {
+    width: 25px;
+    height: 25px;
+    margin-right: 25px;
+  }
+  
