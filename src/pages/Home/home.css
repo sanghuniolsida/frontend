@@ -1,0 +1,114 @@
+.home-container {
+    padding: 20px;
+  }
+  
+  .banner-section {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  }
+  
+  .banner-image {
+    width: 250px;
+    height: 150px;
+    background-color: #f3f0ff;
+    border-radius: 50%;
+  }
+  
+  .card-section {
+    border-top: 1.5px solid #909090;
+    border-bottom: 1.5px solid #909090;
+    padding: 30px 0; /* 좌우 패딩 제거하고 상하만 줌 */
+    margin: 0 -20px 30px -20px; 
+    margin-bottom: 30px;
+    background-color: #fff;
+  }  
+
+  .infocard-section {
+    border-top: 1.5px solid #909090;
+    border-bottom: 1.5px solid #909090;
+    padding: 30px 0;
+    margin: 0 -20px 30px -20px; 
+    margin-bottom: 30px;
+    background-color: #fff;
+    height: 350px;
+  }  
+  
+  .card-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .card-box {
+    flex: 1;
+    height: 125px;
+    background-color: #f3f0ff;
+    border: 1px solid black;
+    border-radius: 15px;
+  }
+  
+  .info-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+  
+  .info-card {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+  }
+  
+  .info-card img {
+    width: 175px;
+    height: 107px;
+    border-radius: 15px;
+    border: 1px solid #B39999;
+  }
+
+  .text {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+  }
+  
+  .text p {
+    margin: 0;
+    font-size: 14px;
+    color: #333;
+  }
+
+  .text strong {
+    display: inline-block;  
+    text-align: center;
+    margin-bottom: 5px;
+    font-size: 20px;
+    
+  }
+
+  .info-card.reverse {
+    flex-direction: row-reverse;
+  }
+  
+  .create-button-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-top: 30px;
+  }
+  
+  .create-button {
+    background-color: black;
+    border: 2px solid #F7F7F7 ;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 30px;
+    font-size: 15px;
+  }
+
+  .create-button:hover {
+    background-color: #666666; 
+    color: white; 
+  }
