@@ -1,0 +1,32 @@
+/* Header.css */
+
+.header-top-color {
+  background-color: #F6DF7B; /* 원하는 윗부분 색상 */
+  height: 25px;              /* 원하는 두께 */
+  width: 100%;
+  max-width: 390px;
+}
+
+.header {
+    background-color: #FFFFFF;
+    height: 79px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    border-bottom: 2px solid #333;
+    border-top: 2px solid #333;
+  }
+  
+  .header-title {
+    font-family: 'Gugi', cursive;
+    font-size: 26px;
+    color: #1D1D1D;
+    margin-left: 20px;
+  }
+  
+  .header-icon {
+    width: 68px;
+    height: 68px;
+  }
+  

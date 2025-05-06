@@ -1,0 +1,45 @@
+/* Footer.css */
+.footer {
+    background-color: #F6F6F6;
+    height: 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    padding: 0 30px 20px;
+    position: relative;
+  }
+  
+  .footer-btn {
+    background-color: #FFFFFF;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 6px 12px;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .profile-circle {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #312C19;
+    color: white;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 4px solid #f6df7b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .homebuttonicon-icon {
+    width: 48px; 
+    height: 48px;
+  }
+  
+  .footer-btn:hover {
+    background-color: #666666; 
+    color: white; 
+  }

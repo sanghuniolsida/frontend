@@ -15,7 +15,6 @@ function LoginPage() {
       </div>
 
       <div className="bottom-section">
-        {/* 예: 구글 로그인 버튼 */}
         <button className="google-login">
             <img src="/googlelogo.png" alt="Google logo" className="google-icon" />
             Google로 시작하기
