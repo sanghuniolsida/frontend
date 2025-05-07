@@ -97,6 +97,36 @@
   }
   
   .google-login:hover {
-    background-color: #3367D6; /* 진한 회색 */
-    color: white; /* 텍스트 색상도 하얀색으로 변경 (선택 사항) */
+    background-color: #bcc0c8; 
+    color: white; 
+  }
+
+  .drop-text span {
+    display: inline-block;
+    animation: dropLoop 3s ease-in-out infinite;
+  }
+  
+  .drop-text span:nth-child(1) { animation-delay: 0s; }
+  .drop-text span:nth-child(2) { animation-delay: 0.1s; }
+  .drop-text span:nth-child(3) { animation-delay: 0.2s; }
+  .drop-text span:nth-child(4) { animation-delay: 0.3s; }
+  .drop-text span:nth-child(5) { animation-delay: 0.4s; }
+  
+  @keyframes dropLoop {
+    0% {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    70% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
   }

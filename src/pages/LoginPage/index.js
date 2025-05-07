@@ -5,7 +5,15 @@ function LoginPage() {
   return (
     <div className="app-wrapper">
       <div className="top-section">
-        <h1 className="title">이야기<br />쏙! 쏙!</h1>
+        <h1 className="title">이야기<br />
+        <span className="drop-text">
+          <span>쏙</span>
+          <span>!</span>
+          <span>&nbsp;</span>
+          <span>쏙</span>
+          <span>!</span>
+        </span>
+        </h1>
 
         <div className="logo-circle">
           <img src="/storylogo.png" alt="logo" className="logo-img" />
