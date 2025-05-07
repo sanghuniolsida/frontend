@@ -41,8 +41,8 @@ function Home() {
           <div className="info-card">
             <img src="/growsoksok.png" alt="성장 쏙쏙" />
             <div className="text">
-              <strong>성장 쏙! 쏙!</strong>
-              <p>퀴즈를 통한 나의 성장 과정을 쏙!쏙!에서 한눈에 확인!</p>
+              <strong>성장 쑥! 쑥!</strong>
+              <p>퀴즈를 통한 나의 성장 과정을 쑥!쑥!에서 한눈에 확인!</p>
             </div>
           </div>
         </div>
