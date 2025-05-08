@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import LoginPage from './pages/LoginPage';
 import Home from './pages/Home';
 import Quiz from './pages/Quiz';
+import Library from './pages/Library';
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" element={<LoginPage />} />
         <Route path="/home" element={<Home />} />
         <Route path="/quiz" element={<Quiz />} />
+        <Route path="/library" element={<Library />} />
         {/* 다른 페이지들도 여기 추가 */}
       </Routes>
     </Router>

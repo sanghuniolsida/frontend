@@ -2,7 +2,7 @@
 
 .header-top-color {
   background-color: #F6DF7B; /* 원하는 윗부분 색상 */
-  height: 25px;              /* 원하는 두께 */
+  height: 25px;              
   width: 100%;
   max-width: 390px;
 }
