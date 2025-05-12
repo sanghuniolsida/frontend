@@ -10,6 +10,7 @@ function Header() {
     '/library': { title: '책장 쏙! 쏙!', icon: '/libraryicon.png' },
     '/home': { title: '이야기 쏙! 쏙!', icon: '/homeicon.png' },
     '/growth': { title: '성장 쑥! 쑥!', icon: '/growicon.png' },
+    '/storyprocess': { title: '이야기 쏙! 쏙쏙!', icon: '/storyprocess.png' },
   };
 
   const { title, icon } = headerConfig[location.pathname] || { title: '', icon: '' };
