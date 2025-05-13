@@ -1,0 +1,78 @@
+.creating-page {
+  width: 100%;
+  max-width: 390px;
+  margin: 0 auto;
+  background-color: #f6df7b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - (/* Header(약 80px) + Footer(약 80px) */ 160px));
+}
+
+.creating-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-circle {
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background-color: #ffffff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
+  margin-bottom: 24px;
+}
+
+.creating-icon {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  animation: rotate 2s linear infinite;
+}
+
+.creating-text {
+  font-size: 18px;
+  font-weight: bold;
+  color: #1d1d1d;
+}
+
+/* ellipsis dot animation */
+.creating-text .dot {
+  opacity: 0;
+  animation: blink 1s infinite ease-in-out;
+}
+.creating-text .dot1 {
+  animation-delay: 0s;
+}
+.creating-text .dot2 {
+  animation-delay: 0.3s;
+}
+.creating-text .dot3 {
+  animation-delay: 0.6s;
+}
+
+@keyframes blink {
+  0%,
+  20% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
