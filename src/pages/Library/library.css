@@ -1,0 +1,33 @@
+.library-container {
+    padding: 20px;
+  }
+  
+  .library-title {
+    font-size: 17px;
+    margin-bottom: 20px;
+    color: #312C19;
+  }
+  
+  .book-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  
+  .book-slot {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    border: 2px dashed #c4b06e;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fffdf2;
+    margin-right: -10px;
+  }
+  
+  .book-placeholder {
+    font-size: 2rem;
+    color: #c4b06e;
+  }
+  
