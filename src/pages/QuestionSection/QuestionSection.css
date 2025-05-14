@@ -1,3 +1,5 @@
+/** QuestionSection Layout **/
+/* Container */
 .question-section {
   width: 100%;
   max-width: 390px;
@@ -6,15 +8,16 @@
   justify-content: center;
   align-items: center;
   background: #f6df7b;
-  min-height: 500px;
+  min-height: 450px;
 }
 
+/* Inner Box */
 .question-box {
   background: #fff;
   border-radius: 40% / 20%;
   width: 90%;
   margin-top: 32px;
-  padding: 32px 16px 24px 16px;
+  padding: 40px 16px 40px 16px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
   display: flex;
   flex-direction: column;
@@ -24,13 +27,16 @@
 .question-title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 28px;
+  margin-bottom: 36px;
   text-align: center;
 }
 
 .choice-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 90%;
-  margin-bottom: 12px;
+  margin-bottom: 18px;
   padding: 10px 0;
   border: 2px solid #222;
   border-radius: 20px;
@@ -38,11 +44,12 @@
   font-size: 16px;
   font-weight: 500;
   cursor: pointer;
+  text-align: center;
 }
 
 .custom-input {
   width: 90%;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   padding: 10px 0 10px 12px;
   border: 2px solid #222;
   border-radius: 20px;
@@ -51,6 +58,10 @@
 }
 
 .next-btn {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   width: 90%;
   padding: 12px 0;
   border-radius: 20px;
@@ -59,5 +70,71 @@
   font-size: 18px;
   font-weight: bold;
   border: none;
+  cursor: not-allowed;
+  text-align: center;
+}
+
+/* Remove wrapper and ellipse classes */
+.question-wrapper,
+.ellipse-top,
+.ellipse-bottom {
+  display: none;
+}
+/* Question Box */
+.question-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Question Title */
+.question-title {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 28px;
+  text-align: center;
+}
+
+/* Choice Buttons */
+.choice-btn,
+.custom-input,
+.next-btn {
+  width: 186px;
+  height: 38px;
+  margin-bottom: 12px;
+  border: 2px solid #222;
+  border-radius: 20px;
+  text-align: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.choice-btn {
+  background: #fff;
+  cursor: pointer;
+  line-height: 38px;
+}
+
+/* Custom Input */
+.custom-input {
+  width: 186px;
+  height: 38px;
+  line-height: 38px;
+  margin-bottom: 12px;
+  border: 2px solid #222;
+  border-radius: 20px;
+  background: #fff;
+  text-align: center;
+  outline: none;
+  padding: 0;
+}
+
+.next-btn {
+  background: #e0e0e0;
+  color: #fff;
+  border: none;
+  font-size: 18px;
+  font-weight: bold;
   cursor: not-allowed;
 }

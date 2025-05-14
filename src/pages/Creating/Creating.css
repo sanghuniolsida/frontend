@@ -16,26 +16,26 @@
 }
 
 .icon-circle {
-  width: 140px;
-  height: 140px;
+  width: 120px;
+  height: 120px;
   border-radius: 50%;
-  background-color: #ffffff;
+  overflow: hidden;
+  background-color: transparent;
   display: flex;
   justify-content: center;
   align-items: center;
-  box-shadow: 2px 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 24px;
 }
 
 .creating-icon {
-  width: 100px;
-  height: 100px;
+  width: 100%;
+  height: 100%;
   object-fit: contain;
   animation: rotate 2s linear infinite;
 }
 
 .creating-text {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: bold;
   color: #1d1d1d;
 }
