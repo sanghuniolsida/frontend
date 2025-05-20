@@ -4,7 +4,7 @@ import Main from '../../components/Main';
 import './library.css'; 
 
 function Library() {
-  const userName = '홍길동'; // 추후 구글 로그인 정보로 대체
+  const userName = localStorage.getItem('username') || '사용자';
 
   return (
     <Main>
