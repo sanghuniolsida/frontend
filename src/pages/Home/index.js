@@ -1,8 +1,39 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Main from '../../components/Main';
-import './home.css'; 
+import './home.css';
+import { jwtDecode } from 'jwt-decode'; 
 
 function Home() {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const query = new URLSearchParams(window.location.search);
+    const token = query.get('accessToken');
+
+    if (token) {
+      try {
+        localStorage.setItem('token', token);
+
+        const decoded = jwtDecode(token);
+        const username = decoded.memberName || decoded.username || decoded.sub;
+
+        if (username) {
+          localStorage.setItem('username', username);
+        }
+
+        const cleanUrl = window.location.origin + window.location.pathname;
+        window.history.replaceState({}, document.title, cleanUrl);
+      } catch (err) {
+        alert('로그인 정보가 유효하지 않습니다.');
+        navigate('/loginpage');
+      }
+    } else if (!localStorage.getItem('token')) {
+      alert('로그인이 필요합니다.');
+      navigate('/loginpage');
+    }
+  }, [navigate]);
+  
   return (
     <Main>
       <div className="home-container">
