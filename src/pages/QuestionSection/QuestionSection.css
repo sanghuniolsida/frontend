@@ -130,6 +130,7 @@
   border: none;
   cursor: pointer;
   margin-right: 20px;
+  border: 1.5px solid black;
 }
 
 .next-btn {
@@ -142,6 +143,15 @@
   font-weight: bold;
   border: none;
   cursor: pointer;
+  border: 1.5px solid black;
+}
+
+.next-btn:hover {
+  background: #b7b3a7;
+}
+
+.prev-btn:hover {
+  background: #b7b3a7;
 }
 
 .prev-btn:disabled,
