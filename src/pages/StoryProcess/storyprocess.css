@@ -1,0 +1,67 @@
+.story-process-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px 0;
+}
+
+.story-image-box {
+  width: 100%;
+  max-width: 390px;
+  height: 380px;
+  background-color: #f5f5f5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.story-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.story-text-box {
+  position: relative;
+  width: 100%;
+  max-width: 390px;
+  height: 230px;
+  overflow-y: auto;
+  background: #fff;
+  border-radius: 5px;
+  padding: 24px 16px 56px; /* 하단 버튼 공간 확보 */
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.05);
+  margin-top: 15px;
+  box-sizing: border-box;
+}
+
+.story-button-row {
+  position: absolute;
+  bottom: 16px;
+  left: 16px;
+  right: 16px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.story-nav-btn {
+  background: #E4E4E4;
+  border: 1.5px solid black;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 13px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #333;
+}
+
+.story-nav-btn:hover {
+  background: #f8eecd;
+}
+
+.story-text {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #333;
+}
