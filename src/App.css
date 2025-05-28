@@ -10,7 +10,7 @@ body, html {
   width: 100%;
   max-width: 400px;   /* <- 여기 너비 설정 */
   height: 100vh;       /* <- 세로 화면 꽉 차게 */
-  margin: 0 auto;      /* 가운데 정렬 */
+  margin: 0 auto;      
   background-color: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* 화면 테두리 강조용 */
   display: flex;

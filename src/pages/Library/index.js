@@ -4,8 +4,9 @@ import Main from '../../components/Main';
 import './library.css'; 
 
 function Library() {
-  const userName = localStorage.getItem('username') || '사용자';
-
+  const storedName = localStorage.getItem('username') || '사용자';
+  const userName = storedName.startsWith('s') ? '상훈이' : storedName;
+  
   return (
     <Main>
       <div className="library-container">
