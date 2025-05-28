@@ -57,23 +57,6 @@
   outline: none;
 }
 
-.next-btn {
-  margin-top: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 90%;
-  padding: 12px 0;
-  border-radius: 20px;
-  background: #e0e0e0;
-  color: #fff;
-  font-size: 18px;
-  font-weight: bold;
-  border: none;
-  cursor: not-allowed;
-  text-align: center;
-}
-
 /* Remove wrapper and ellipse classes */
 .question-wrapper,
 .ellipse-top,
@@ -98,8 +81,7 @@
 
 /* Choice Buttons */
 .choice-btn,
-.custom-input,
-.next-btn {
+.custom-input {
   width: 186px;
   height: 38px;
   margin-bottom: 12px;
@@ -130,11 +112,40 @@
   padding: 0;
 }
 
-.next-btn {
+.button-row {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.prev-btn {
+  width: 88px;
+  height: 38px;
+  border-radius: 40px;
   background: #e0e0e0;
   color: #fff;
-  border: none;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: bold;
+  border: none;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.next-btn {
+  width: 88px;
+  height: 38px;
+  border-radius: 40px;
+  background: #e0e0e0;
+  color: #fff;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+}
+
+.prev-btn:disabled,
+.next-btn:disabled {
   cursor: not-allowed;
+  opacity: 0.5;
 }

@@ -81,7 +81,7 @@ function Home() {
         
         {/* 버튼 */}
         <div className="create-button-wrapper">
-          <button className="create-button">동화 생성하기</button>
+          <button className="create-button" onClick={() => navigate('/question')}>동화 생성하기</button>
         </div>
       </div>
     </Main>
