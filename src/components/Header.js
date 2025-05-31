@@ -10,7 +10,9 @@ function Header() {
     '/creating': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
     '/library': { title: '책장 쏙! 쏙!', icon: '/libraryicon.png' },
     '/home': { title: '이야기 쏙! 쏙!', icon: '' },
-    '/growth': { title: '성장 쑥! 쑥!', icon: '/growicon.png' },
+    '/growth': { title: '성장 쑥! 쑥!', icon: '/Creating.png' },
+    '/stats': { title: '성장 쑥! 쑥!', icon: '/Creating.png' },
+    '/storybook': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
     '/storyprocess': { title: '이야기 쏙! 쏙!', icon: '/storyprocess.png' },
   };
 
@@ -19,27 +21,34 @@ function Header() {
     icon: '',
   };
 
-const handleLogout = () => {
-  localStorage.removeItem('token');
-  localStorage.removeItem('username');
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('username');
 
-  fetch('https://story-sok-sok.kro.kr/logout', {
-    method: 'GET',
-    credentials: 'include'
-  })
-    .catch(err => {
-      console.warn('⚠️ 로그아웃 요청 실패:', err); //필요는 없으나 임시 방편 메세지
+    fetch('https://story-sok-sok.kro.kr/logout', {
+      method: 'GET',
+      credentials: 'include',
     })
-    .finally(() => {
-      window.location.href = '/';
-    });
-};
-
+      .catch((err) => {
+        console.warn('⚠️ 로그아웃 요청 실패:', err); //필요는 없으나 임시 방편 메세지
+      })
+      .finally(() => {
+        window.location.href = '/';
+      });
+  };
 
   return (
     <>
       <div className="header-top-color"></div>
-      <header className="header">
+      <header
+        className="header"
+        style={{
+          backgroundColor:
+            location.pathname === '/growth' || location.pathname === '/stats'
+              ? '#FDF9E7'
+              : '#FFFFFF',
+        }}
+      >
         <h1 className="header-title">{title}</h1>
         {location.pathname === '/home' ? (
           <button className="logout-button" onClick={handleLogout}>
