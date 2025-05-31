@@ -9,54 +9,57 @@
   align-items: center;
   background: #f6df7b;
   min-height: 450px;
-  position: relative;
 }
 
-/* 상단 곡선 - 흰색이 노란 배경으로 들어감 */
-.question-top-curve {
-  position: absolute;
-  top: 25px;
-  width: 390px;
-  height: 108px;
-  background-color: #fff;
-  border-radius: 50%;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 2;
-}
-
-/* 메인 흰색 박스 - 사각형 */
+/* Inner Box */
 .question-box {
   background: #fff;
-  width: 60%;
-  margin-top: 32px;
-  padding: 5px 16px 5px 16px;
+  width: 90%;
+  margin-top: 150px;
+  padding: 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
-  z-index: 3;
-  /* border-radius 완전 제거 - 사각형 */
 }
 
-/* 하단 곡선 - 흰색이 노란 배경으로 들어감 */
-.question-bottom-curve {
-  position: absolute;
-  bottom: -5px;
-  width: 390px;
-  height: 108px;
-  background-color: #fff;
+.circle-deco {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 100%;
+  margin: 12px auto;
+}
+
+.circle-deco.top {
+  position: absolute; 
+  width: 410px;
+  height: 150px;
+  background-color: #ffffff;
   border-radius: 50%;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
+  z-index: 0;
+  top: 175px;
+}
+
+.circle-deco.bottom {
+  position: absolute;
+  width: 410px;
+  height: 150px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 0;
+  bottom: 210px
 }
 
 .question-title {
   font-size: 20px;
   font-weight: bold;
-  margin-bottom: 10px;
+  margin-bottom: 36px;
   text-align: center;
+  z-index: 1;   
 }
 
 .choice-btn {
@@ -73,6 +76,7 @@
   font-weight: 500;
   cursor: pointer;
   text-align: center;
+  z-index: 1;   
 }
 
 .custom-input {
@@ -83,6 +87,7 @@
   border-radius: 20px;
   font-size: 16px;
   outline: none;
+  z-index: 1;   
 }
 
 /* Remove wrapper and ellipse classes */
@@ -99,13 +104,7 @@
   align-items: center;
 }
 
-/* Question Title */
-.question-title {
-  font-size: 20px;
-  font-weight: bold;
-  margin-bottom: 28px;
-  text-align: center;
-}
+
 
 /* Choice Buttons */
 .choice-btn,
@@ -124,6 +123,7 @@
   background: #fff;
   cursor: pointer;
   line-height: 38px;
+  
 }
 
 /* Custom Input */
@@ -159,6 +159,7 @@
   cursor: pointer;
   margin-right: 20px;
   border: 1.5px solid black;
+  z-index: 1;   
 }
 
 .next-btn {
@@ -172,7 +173,9 @@
   border: none;
   cursor: pointer;
   border: 1.5px solid black;
+  z-index: 1;   
 }
+
 
 .next-btn:hover {
   background: #b7b3a7;

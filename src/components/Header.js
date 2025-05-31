@@ -10,9 +10,7 @@ function Header() {
     '/creating': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
     '/library': { title: '책장 쏙! 쏙!', icon: '/libraryicon.png' },
     '/home': { title: '이야기 쏙! 쏙!', icon: '' },
-    '/growth': { title: '성장 쑥! 쑥!', icon: '/Creating.png' },
     '/stats': { title: '성장 쑥! 쑥!', icon: '/Creating.png' },
-    '/storybook': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
     '/storyprocess': { title: '이야기 쏙! 쏙!', icon: '/storyprocess.png' },
   };
 
