@@ -8,9 +8,8 @@ import QuestionSectionPage from './pages/QuestionSection';
 import CreatingPage from './pages/Creating';
 import Library from './pages/Library';
 import StoryProcess from './pages/StoryProcess';
-import GrowthPage from './pages/GrowthPage';
 import StatsPage from './pages/StatsPage';
-import StoryBookPage from './pages/StoryBookPage';
+
 
 function App() {
   return (
@@ -23,9 +22,7 @@ function App() {
         <Route path="/creating" element={<CreatingPage />} />
         <Route path="/library" element={<Library />} />
         <Route path="/storyprocess" element={<StoryProcess />} />
-        <Route path="/growth" element={<GrowthPage />} />
         <Route path="/stats" element={<StatsPage />} />
-        <Route path="/storybook" element={<StoryBookPage />} />
         {/* 다른 페이지들도 여기 추가 */}
       </Routes>
     </Router>
