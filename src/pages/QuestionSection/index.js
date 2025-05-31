@@ -80,7 +80,6 @@ function QuestionSectionPage() {
     <Main>
       <div className="question-section">
         <div className="question-box">
-          {/* 위쪽 원 */}
           <div className="circle-deco top" />
 
           <div className="question-title">{current.title}</div>
@@ -122,8 +121,6 @@ function QuestionSectionPage() {
               {step < questions.length - 1 ? '다음' : '완료'}
             </button>
           </div>
-
-          {/* 아래쪽 원 */}
           <div className="circle-deco bottom" />
         </div>
       </div>
