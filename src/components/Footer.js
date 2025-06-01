@@ -13,7 +13,7 @@ function Footer() {
         <img src="/homebuttonicon.png" alt="홈 버튼 아이콘" className="homebuttonicon-icon" />
       </button>
       
-      <button className="footer-btn">성장 쑥쑥</button>
+      <button className="footer-btn" onClick={() => navigate('/stats')}>성장 쑥쑥</button>
     </footer>
   );
 }

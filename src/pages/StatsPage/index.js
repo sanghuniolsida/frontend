@@ -59,22 +59,15 @@ function StatsPage() {
   return (
     <Main>
       <div className="stats-section">
-        {/* 상단 곡선 - 흰색 영역의 일부 */}
-        <div className="stats-top-curve"></div>
-
-        {/* 메인 흰색 박스 - 사각형 */}
+        <div className="circle-deco top1" />
         <div className="stats-box">
-          {/* 진행 막대들 */}
           <div className="progress-list">
             {stats.map((s, index) => (
               <div key={s.label} className="progress-item">
                 <span className="label">{s.label}</span>
                 <span className="end-label">0</span>
                 <div className="bar-container">
-                  <div
-                    className="bar-fill"
-                    style={{ width: `${s.value * 10}%` }}
-                  ></div>
+                  <div className="bar-fill" style={{ width: `${s.value * 10}%` }}></div>
                   <span className="value" style={{ left: `${s.value * 10}%` }}>
                     {s.value}
                   </span>
@@ -83,17 +76,14 @@ function StatsPage() {
               </div>
             ))}
           </div>
-
-          {/* 레이더 차트 - 중간 박스 하단부터 하단 곡선까지 */}
-          <div className="radar-wrapper" onClick={() => navigate('/growth')}>
+          <div className="radar-wrapper">
             <Radar data={radarData} options={radarOptions} />
           </div>
         </div>
-
-        {/* 하단 곡선 - 흰색 영역의 일부 */}
-        <div className="stats-bottom-curve"></div>
+        <div className="circle-deco bottom1" />
       </div>
     </Main>
+
   );
 }
 
