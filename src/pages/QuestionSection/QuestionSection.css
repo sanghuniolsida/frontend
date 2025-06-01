@@ -109,7 +109,7 @@
 /* Choice Buttons */
 .choice-btn,
 .custom-input {
-  width: 186px;
+  width: 240px;
   height: 38px;
   margin-bottom: 12px;
   border: 2px solid #222;
@@ -128,7 +128,7 @@
 
 /* Custom Input */
 .custom-input {
-  width: 186px;
+  width: 240px;
   height: 38px;
   line-height: 38px;
   margin-bottom: 12px;

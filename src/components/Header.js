@@ -7,6 +7,7 @@ function Header() {
   const headerConfig = {
     '/quiz': { title: '퀴즈 쏙! 쏙!', icon: '/bookicon.png' },
     '/question': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
+    '/secondstory': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
     '/creating': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
     '/library': { title: '책장 쏙! 쏙!', icon: '/libraryicon.png' },
     '/home': { title: '이야기 쏙! 쏙!', icon: '' },
