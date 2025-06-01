@@ -1,8 +1,8 @@
 // 공통 차트 설정 및 통계 데이터
 export const stats = [
-  { label: '이해력', value: 7 },
+  { label: '주의\n집중력', value: 7 },
   { label: '기억력', value: 5 },
-  { label: '주의\n집중력', value: 8 },
+  { label: '이해력', value: 8 },
   { label: '언어\n추론력', value: 6 },
 ];
 
