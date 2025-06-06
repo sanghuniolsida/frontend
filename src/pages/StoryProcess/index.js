@@ -9,12 +9,11 @@ function StoryProcess() {
   const parsed = stored ? JSON.parse(stored) : null;
 
   const storyList = parsed?.midPartFairyTaleStory || [];
-  const imageUrl = parsed?.imageUrl || '/default-image.png';
   const secondHalf = parsed?.secondHalfFairyTaleStory || [];
+  const imageUrls = parsed?.imageUrls || [parsed?.imageUrl || '/default-image.png'];
   const hasSecondHalf = secondHalf.length > 0;
 
   const fullStory = hasSecondHalf ? [...storyList, ...secondHalf] : storyList;
-
   const [pageIndex, setPageIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [showModal, setShowModal] = useState(false);
@@ -30,7 +29,7 @@ function StoryProcess() {
     let i = 0;
     let isMounted = true;
 
-    setDisplayedText(currentText[0]); // 첫 글자부터 정확히 시작
+    setDisplayedText(currentText[0]);
 
     const interval = setInterval(() => {
       if (!isMounted) return;
@@ -90,8 +89,8 @@ function StoryProcess() {
       <div className="story-process-container">
         <div className="story-image-box">
           <img
-            src={imageUrl}
-            alt={`스토리 이미지`}
+            src={imageUrls[pageIndex] || imageUrls[imageUrls.length - 1] || '/default-image.png'}
+            alt={`스토리 이미지 ${pageIndex + 1}`}
             className="story-image"
           />
         </div>
