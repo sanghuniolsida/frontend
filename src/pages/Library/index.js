@@ -6,6 +6,7 @@ import './library.css';
 const presetBooks = [
   { title: '퍼피와 키티', cover: '/dogcatstory/표지.png' },
   { title: '루루와 웃는 구름', cover: '/rabitcloud/rabitcloud0.png' },
+  { title: '화가 난 곰돌이', cover: '/bear/bear0.png' },
 ];
 
 function Library() {
