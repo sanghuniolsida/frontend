@@ -10,6 +10,7 @@ import Library from './pages/Library';
 import StoryProcess from './pages/StoryProcess';
 import StatsPage from './pages/StatsPage';
 import SecondStoryPage from './pages/SecondStory';
+import LibraryStory from './pages/LibraryStory';
 
 
 function App() {
@@ -25,7 +26,7 @@ function App() {
         <Route path="/storyprocess" element={<StoryProcess />} />
         <Route path="/stats" element={<StatsPage />} />
         <Route path="/secondstory" element={<SecondStoryPage />} />
-        {/* 다른 페이지들도 여기 추가 */}
+        <Route path="/librarystory" element={<LibraryStory />} />
       </Routes>
     </Router>
   );

@@ -13,6 +13,7 @@ function Header() {
     '/home': { title: '이야기 쏙! 쏙!', icon: '' },
     '/stats': { title: '성장 쑥! 쑥!', icon: '/Creating.png' },
     '/storyprocess': { title: '이야기 쏙! 쏙!', icon: '/storyprocess.png' },
+    '/librarystory': { title: '이야기 쏙! 쏙!', icon: '/storyprocess.png' },
   };
 
   const { title, icon } = headerConfig[location.pathname] || {

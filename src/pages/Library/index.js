@@ -4,7 +4,8 @@ import Main from '../../components/Main';
 import './library.css';
 
 const presetBooks = [
-  { title: '퍼피와 키티', cover: '/dogcatstory/표지.png' }
+  { title: '퍼피와 키티', cover: '/dogcatstory/표지.png' },
+  { title: '루루와 웃는 구름', cover: '/rabitcloud/rabitcloud0.png' },
 ];
 
 function Library() {
@@ -28,7 +29,7 @@ function Library() {
 
   const handleCloseModal = () => setSelectedBook(null);
   const handleViewStory = () => {
-    navigate('/storyprocess', { state: selectedBook });
+    navigate('/librarystory', { state: selectedBook });
   };
 
   return (
