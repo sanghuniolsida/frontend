@@ -4,7 +4,7 @@ import Main from '../../components/Main';
 import './library.css';
 
 const presetBooks = [
-  { title: '퍼피와 키티', cover: '/dogcatstory/표지.png' },
+  { title: '퍼피와 키티', cover: '/dogcatstory/dogcat0.png' },
   { title: '루루와 웃는 구름', cover: '/rabitcloud/rabitcloud0.png' },
   { title: '화가 난 곰돌이', cover: '/bear/bear0.png' },
 ];
@@ -31,6 +31,10 @@ function Library() {
   const handleCloseModal = () => setSelectedBook(null);
   const handleViewStory = () => {
     navigate('/librarystory', { state: selectedBook });
+  };
+
+  const handleGoToQuiz = () => {
+    navigate('/quiz');
   };
 
   return (
@@ -71,10 +75,11 @@ function Library() {
       {selectedBook && (
         <div className="modal-overlay">
           <div className="modal-content">
+            <button className="modal-close" onClick={handleCloseModal}>Ｘ</button>
             <p>『{selectedBook.title}』 동화를 펼쳐볼까요?</p>
             <div className="modal-buttons">
-              <button onClick={handleCloseModal}>다시 선택하기</button>
               <button onClick={handleViewStory}>동화 보기</button>
+              <button onClick={handleGoToQuiz}>퀴즈 풀기</button>
             </div>
           </div>
         </div>
