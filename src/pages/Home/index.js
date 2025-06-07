@@ -48,15 +48,6 @@ function Home() {
             <img src="/storylogo.png" alt="스토리로고" className="logo-image" />
           </div>
         </div>
-
-        <div className="card-section">
-          <div className="card-row">
-            <div className="card-box"></div>
-            <div className="card-box"></div>
-            <div className="card-box"></div>
-          </div>
-        </div>
-
         <div className="infocard-section">
           <div className="info-section">
             <div className="info-card">
@@ -91,7 +82,7 @@ function Home() {
             className="create-button"
             onClick={() => navigate('/question')}
           >
-            동화 생성하기
+            동화 생성하기✍️
           </button>
         </div>
       </div>

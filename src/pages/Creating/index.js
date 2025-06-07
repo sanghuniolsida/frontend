@@ -10,71 +10,114 @@ function CreatingPage() {
 
   useEffect(() => {
     const fetchStory = async () => {
-      const {
-        fairyTaleSubject,
-        fairyTaleLocation,
-        fairyTaleCharacter,
-        otherSubject,
-        otherLocation,
-        otherCharacter,
-      } = location.state || {};
+      const token = localStorage.getItem('token');
+      const secondHalfSubject = localStorage.getItem('secondHalfSubject');
+      const otherSecondHalf = localStorage.getItem('secondHalfEtc');
+      const midPartRaw = localStorage.getItem('midPartStory');
 
-      if (!fairyTaleSubject || !fairyTaleLocation || !fairyTaleCharacter) {
-        alert('동화 생성 정보가 없습니다.');
-        return;
-      }
+      const isSecondHalfGeneration =
+        !location.state && secondHalfSubject && midPartRaw;
 
       try {
-        const token = localStorage.getItem('token');
+        if (isSecondHalfGeneration) {
+          // ――――― 후반부 동화 생성 ―――――
+          const midPart = JSON.parse(midPartRaw);
+          const fairyTaleId = midPart.midPartFairyTaleId;
 
-        // 1. 전반부 동화 생성
-        const res = await fetch('https://story-sok-sok.kro.kr/api/fairy-tale/first', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({
+          console.log('후반부 동화 생성 요청 파라미터:', {
+            secondHalfRecommendStory: secondHalfSubject,
+            midPartFairyTaleId: fairyTaleId,
+            otherRecommendStory: secondHalfSubject === 'ETC' ? otherSecondHalf : 'string',
+          });
+          console.log('Token:', token);
+
+          const res = await fetch('https://story-sok-sok.kro.kr/api/fairy-tale/second-half', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
+            },
+            body: JSON.stringify({
+              secondHalfRecommendStory: secondHalfSubject.trim(),
+              midPartFairyTaleId: fairyTaleId,
+              otherRecommendStory: secondHalfSubject === 'ETC' ? otherSecondHalf : 'string',
+            }),
+          });
+
+          if (!res.ok) throw new Error('후반부 동화 생성 실패');
+          const data = await res.json();
+
+          midPart.secondHalfFairyTaleStory = data.secondHalfFairyTaleStory;
+          midPart.imageUrls.push(data.imageUrl); // 5페이지 이미지 추가
+          localStorage.setItem('midPartStory', JSON.stringify(midPart));
+          navigate('/storyprocess');
+        } else {
+          // ――――― 전반부 동화 생성 ―――――
+          const {
             fairyTaleSubject,
             fairyTaleLocation,
             fairyTaleCharacter,
             otherSubject,
             otherLocation,
             otherCharacter,
-          }),
-        });
+          } = location.state || {};
 
-        if (!res.ok) throw new Error('동화 생성 실패');
+          if (!fairyTaleSubject || !fairyTaleLocation || !fairyTaleCharacter) {
+            alert('동화 생성 정보가 없습니다.');
+            return;
+          }
 
-        const data = await res.json();
-        const fairyTaleId = data.midPartFairyTaleId;
-
-        // 2. 이미지 생성 (1페이지: 전반부 생성 시 받아옴, 2~4페이지: 별도 요청)
-        const imageUrls = [data.imageUrl]; // 첫 번째 페이지 이미지 포함
-
-        for (let pageNum = 2; pageNum <= 4; pageNum++) {
-          const imageRes = await fetch(`https://story-sok-sok.kro.kr/api/fairy-tale/${fairyTaleId}/${pageNum}`, {
+          const res = await fetch('https://story-sok-sok.kro.kr/api/fairy-tale/first', {
             method: 'POST',
             headers: {
               'Content-Type': 'application/json',
               Authorization: `Bearer ${token}`,
             },
+            body: JSON.stringify({
+              fairyTaleSubject,
+              fairyTaleLocation,
+              fairyTaleCharacter,
+              otherSubject,
+              otherLocation,
+              otherCharacter,
+            }),
           });
 
-          if (!imageRes.ok) {
-            const errorText = await imageRes.text();
-            console.error(`페이지 ${pageNum} 이미지 생성 실패:`, errorText);
-            throw new Error(`페이지 ${pageNum} 이미지 생성 실패`);
+          if (!res.ok) throw new Error('전반부 동화 생성 실패');
+          const data = await res.json();
+          const fairyTaleId = data.midPartFairyTaleId;
+
+          const imageUrls = [data.imageUrl];
+          for (let pageNum = 2; pageNum <= 4; pageNum++) {
+            const imageRes = await fetch(`https://story-sok-sok.kro.kr/api/fairy-tale/${fairyTaleId}/${pageNum}`, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+              },
+            });
+
+            if (!imageRes.ok) {
+              const errorText = await imageRes.text();
+              console.error(`페이지 ${pageNum} 이미지 생성 실패:`, errorText);
+              throw new Error(`페이지 ${pageNum} 이미지 생성 실패`);
+            }
+
+            const imageData = await imageRes.json();
+            imageUrls.push(imageData.imageUrl);
           }
 
-          const imageData = await imageRes.json();
-          imageUrls.push(imageData.imageUrl);
-        }
+          if (Array.isArray(data.secondHalfRecommendStory)) {
+            data.secondHalfRecommendStory = data.secondHalfRecommendStory.map((text, index) => ({
+              enum: `SECOND_HALF_RECOMMEND_${index}`,
+              text: text.trim(),
+            }));
+          }
 
-        // 3. 이미지 URL 포함 저장 후 이동
-        data.imageUrls = imageUrls;
-        localStorage.setItem('midPartStory', JSON.stringify(data));
-        navigate('/storyprocess');
+          data.imageUrls = imageUrls;
+          localStorage.setItem('midPartStory', JSON.stringify(data));
+          navigate('/storyprocess');
+        }
       } catch (err) {
         console.error(err);
         alert('동화 생성 또는 이미지 생성 중 오류가 발생했습니다.');
