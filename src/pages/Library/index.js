@@ -34,7 +34,7 @@ function Library() {
   };
 
   const handleGoToQuiz = () => {
-    navigate('/quiz');
+    navigate('/quiz', { state: { title: selectedBook.title } });
   };
 
   return (

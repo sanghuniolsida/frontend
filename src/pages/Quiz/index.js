@@ -1,49 +1,192 @@
 import React, { useState } from 'react';
 import Main from '../../components/Main';
 import './quiz.css';
+import { useLocation } from 'react-router-dom';
 
 function Quiz() {
-  // 동화 슬라이드 상태
-  const [currentSlide, setCurrentSlide] = useState(0);
-  // 퀴즈 문제 상태
+  const location = useLocation();
+  const selectedTitle = location.state?.title || '퍼피와 키티';
+
+  const quizData = {
+    '퍼피와 키티': {
+      images: [
+        '/dogcatstory/dogcat1.png',
+        '/dogcatstory/dogcat2.png',
+        '/dogcatstory/dogcat3.png',
+        '/dogcatstory/dogcat4.png',
+        '/dogcatstory/dogcat5.png',
+        '/dogcatstory/dogcat6.png',
+        '/dogcatstory/dogcat7.png',
+      ],
+      questions: [
+        {
+          question: 'Q1. 퍼피와 키티가 처음 놀이터에서 만나서 한 행동은 무엇이었나요?', //이해력
+          options: [
+            '서로를 보고 도망쳤어요',
+            '누가 더 멋진지 경쟁하려고 했어요', //✅
+            '인사를 하고 헤어졌어요',
+            '함께 숨바꼭질을 했어요'
+          ]
+        },
+        {
+          question: 'Q2. 퍼피와 키티가 싸우다가 어떤 일이 일어났나요?', //기억력
+          options: [
+            '퍼피와 키티가 울기 시작했어요',
+            '누군가 와서 말렸어요',
+            '퍼피는 넘어지고 키티는 땅에 떨어졌어요', //✅
+            '퍼피가 집으로 돌아갔어요'
+          ]
+        },
+        {
+          question: 'Q3. 퍼피는 어떻게 자신이 멋지다고 보여주려고 했나요?', //주의 집중
+          options: [
+            '크게 짖었어요',
+            '멋지게 점프하며 달렸어요', //✅
+            '나무 위로 올라갔어요',
+            '공을 던졌어요'
+          ]
+        },
+        {
+          question: 'Q4. 퍼피와 키티가 마지막에 어떻게 되었나요?', //언어추론
+          options: [
+            '끝까지 말도 안 하고 헤어졌어요',
+            '둘 다 집으로 돌아갔어요',
+            '서로 화해하고 친구가 되었어요', //✅
+            '선생님께 혼났어요'
+          ]
+        }
+      ]
+    },
+    '루루와 웃는 구름': {
+      images: [
+        '/rabitcloud/rabitcloud1.png',
+        '/rabitcloud/rabitcloud2.png',
+        '/rabitcloud/rabitcloud3.png',
+        '/rabitcloud/rabitcloud4.png',
+        '/rabitcloud/rabitcloud5.png',
+        '/rabitcloud/rabitcloud6.png',
+        '/rabitcloud/rabitcloud7.png',
+        '/rabitcloud/rabitcloud8.png',
+      ],
+      questions: [
+        {
+          question: 'Q1. 이 동화에서 루루는 어떤 행동으로 구름을 도와줬나요?', //이해력
+          options: [
+            '구름을 혼냈어요',
+            '따뜻한 미소와 말로 다가갔어요', //✅
+            '구름에게 등을 돌렸어요',
+            '당근을 던졌어요'
+          ]
+        },
+        {
+          question: 'Q2. 구름이 웃은 뒤 어떤 일이 일어났나요?', //기억력
+          options: [
+            '비가 내렸어요',
+            '구름이 사라졌어요',
+            '무지개가 하늘에 생겼어요', //✅
+            '루루가 집에 갔어요'
+          ]
+        },
+        {
+          question: 'Q3. 루루는 어떤 색 망토를 두르고 있었나요?', //주의 집중
+          options: [
+            '파란색',
+            '빨간색', //✅
+            '노란색',
+            '초록색'
+          ]
+        },
+        {
+          question: 'Q4. 구름이 처음에 슬펐던 이유는 무엇인가요?', //언어추론
+          options: [
+            '바람이 불어서요',
+            '당근을 못 먹어서요',
+            '친구가 없어서 외로웠기 때문일 수 있어요', //✅
+            '하늘이 너무 더워서요'
+          ]
+        }
+      ]
+    },
+    '화가 난 곰돌이': {
+      images: [
+        '/bear/bear1.png',
+        '/bear/bear2.png',
+        '/bear/bear3.png',
+        '/bear/bear4.png',
+        '/bear/bear5.png',
+        '/bear/bear6.png',
+        '/bear/bear7.png',
+        '/bear/bear8.png',
+      ],
+      questions: [
+        {
+          question: 'Q1. 이 이야기에서 무무는 왜 친구에게 미안한 마음이 들었을까요?', //이해력
+          options: [
+            '삽을 잃어버려서요',
+            '친구를 놀래켰기 때문이에요', //✅
+            '꽃을 못 심어서요',
+            '혼자 있어서요'
+          ]
+        },
+        {
+          question: 'Q2. 무무는 무엇을 하다가 화가 났나요?', //기억력
+          options: [
+            '밥을 먹다가요',
+            '나무에 올라가다가요',
+            '나무삽을 떨어뜨려서요', //✅
+            '꽃을 따다가요'
+          ]
+        },
+        {
+          question: 'Q3. 무무에게 먼저 다가가 말을 건 친구의 이름은 누구였나요?', //주의 집중
+          options: [
+            '레이이',
+            '피피', //✅
+            '키티',
+            '토토'
+          ]
+        },
+        {
+          question: 'Q4. 무무는 마지막에 어떤 마음이 되었나요?', //언어추론
+          options: [
+            '더 화가 났어요',
+            '슬퍼졌어요',
+            '마음이 가벼워졌어요', //✅
+            '마음이 복잡해졌어요'
+          ]
+        }
+      ]
+    }
+  };
+
+  const quiz = quizData[selectedTitle];
+  const [translateX, setTranslateX] = useState(0);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
 
-  const images = [
-    '/quiz1.png',
-    '/quiz2.png',
-    '/quiz3.png',
-    '/quiz4.png'
-  ];
-   //나중에 api 연동시 서버에서 받아오는 내용을 채우도록 할거임.
-  const questions = [
-    {
-      question: "퀴즈1",
-      options: ["선택지 1", "선택지 2", "선택지 3", "선택지 4"]
-    },
-    {
-      question: "퀴즈2",
-      options: ["빨강", "파랑", "노랑", "초록"]
-    },
-    {
-      question: "퀴즈3",
-      options: ["고양이", "강아지", "용", "새"]
-    },
-    {
-      question: "퀴즈4",
-      options: ["봄", "여름", "가을", "겨울"]
-    }
-  ];
+  const slideStep = 120;
+  const imageWidth = 340;
 
-  // 슬라이드 좌우 이동
+  if (!quiz) {
+    return (
+      <Main>
+        <div className="quiz-page">
+          <p>해당 동화의 퀴즈가 없습니다.</p>
+        </div>
+      </Main>
+    );
+  }
+
+  const { images, questions } = quiz;
+  const maxTranslateX = -(images.length - 1) * imageWidth;
+
   const handleSlidePrev = () => {
-    setCurrentSlide((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+    setTranslateX((prev) => Math.min(prev + slideStep, 0));
   };
 
   const handleSlideNext = () => {
-    setCurrentSlide((prev) => (prev === images.length - 1 ? 0 : prev + 1));
+    setTranslateX((prev) => Math.max(prev - slideStep, maxTranslateX));
   };
 
-  // 퀴즈 문제 전환
   const handleQuestionPrev = () => {
     setCurrentQuestionIndex((prev) => (prev === 0 ? questions.length - 1 : prev - 1));
   };
@@ -55,20 +198,27 @@ function Quiz() {
   return (
     <Main>
       <div className="quiz-page">
-        {/* 상단 동화 슬라이드 영역 */}
         <div className="quiz-images">
-          <div className="quiz-images-wrapper" style={{ transform: `translateX(-${currentSlide * 100}%)` }}>
+          <div
+            className="quiz-images-wrapper"
+            style={{
+              transform: `translateX(${translateX}px)`,
+              transition: 'transform 0.3s ease-in-out',
+              width: `${images.length * imageWidth}px`
+            }}
+          >
             {images.map((image, index) => (
-              <img key={index} src={image} alt={`장면${index + 1}`} />
+              <div key={index} className="quiz-image-container">
+                <img src={image} alt={`장면${index + 1}`} />
+              </div>
             ))}
           </div>
           <div className="quiz-slide-buttons">
-            <button onClick={handleSlidePrev}>←</button>
-            <button onClick={handleSlideNext}>→</button>
+            <button onClick={handleSlidePrev} disabled={translateX === 0}>←</button>
+            <button onClick={handleSlideNext} disabled={translateX === maxTranslateX}>→</button>
           </div>
         </div>
 
-        {/* 퀴즈 영역 */}
         <div className="quiz-question-section">
           <div className="quiz-number">
             {questions.map((_, i) => (
@@ -82,7 +232,7 @@ function Quiz() {
 
           <div className="quiz-options">
             {questions[currentQuestionIndex].options.map((option, i) => (
-               <button key={i}>{option}</button>
+              <button key={i}>{option}</button>
             ))}
           </div>
 
