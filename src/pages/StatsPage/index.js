@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Main from '../../components/Main';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import {
   Chart as ChartJS,
   RadialLinearScale,
@@ -25,21 +25,26 @@ ChartJS.register(
 );
 
 function StatsPage() {
-  const navigate = useNavigate();
 
-  // 상태로 stats 데이터 관리
-  const [stats, setStats] = useState(initialStats);
+  const [stats, setStats] = useState(() => {
+    const stored = localStorage.getItem('quizScores');
+    const scoreData = stored ? JSON.parse(stored) : null;
 
-  // 막대 클릭 시 값 변경 함수
-  const handleBarClick = (index) => {
-    setStats((prevStats) => {
-      const newStats = [...prevStats];
-      // 값을 1씩 증가시키되 10을 넘으면 1로 리셋
-      newStats[index].value =
-        newStats[index].value >= 10 ? 1 : newStats[index].value + 1;
-      return newStats;
-    });
+    if (scoreData) {
+      return initialStats.map((s) => ({
+        ...s,
+        value: scoreData[s.key] || 0, // label 대신 key 사용
+      }));
+    }
+    return initialStats;
+  });
+
+
+  const handleReset = () => {
+    localStorage.removeItem('quizScores');
+    setStats(initialStats.map((s) => ({ ...s, value: 0 })));
   };
+
 
   // 실시간 레이더 데이터 생성
   const radarData = {
@@ -62,7 +67,7 @@ function StatsPage() {
         <div className="circle-deco top1" />
         <div className="stats-box">
           <div className="progress-list">
-            {stats.map((s, index) => (
+            {stats.map((s) => (
               <div key={s.label} className="progress-item">
                 <span className="label">{s.label}</span>
                 <span className="end-label">0</span>
@@ -75,6 +80,9 @@ function StatsPage() {
                 <span className="end-label">10</span>
               </div>
             ))}
+            <div>
+              <button className="reset-button" onClick={handleReset}>⮌</button>
+            </div>
           </div>
           <div className="radar-wrapper">
             <Radar data={radarData} options={radarOptions} />
@@ -83,7 +91,6 @@ function StatsPage() {
         <div className="circle-deco bottom1" />
       </div>
     </Main>
-
   );
 }
 

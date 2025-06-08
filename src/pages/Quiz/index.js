@@ -342,7 +342,18 @@ function Quiz() {
   };
 
   const handleFinishQuiz = () => {
-    navigate('/stats', { state: { scores } });
+    const prevScoresRaw = localStorage.getItem('quizScores');
+    const prevScores = prevScoresRaw ? JSON.parse(prevScoresRaw) : {};
+
+    // 기존 점수 + 현재 점수 누적
+    const mergedScores = { ...prevScores };
+
+    Object.entries(scores).forEach(([category, count]) => {
+      mergedScores[category] = (mergedScores[category] || 0) + count;
+    });
+
+    localStorage.setItem('quizScores', JSON.stringify(mergedScores));
+    navigate('/stats');
   };
 
   return (
@@ -409,18 +420,16 @@ function Quiz() {
             ))}
           </div>
 
-          <div className="quiz-submit-section">
-            <button onClick={handleSubmit}>제출</button>
-          </div>
-
           <div className="quiz-nav-buttons">
             <button onClick={handleQuestionPrev}>이전</button>
             <button onClick={handleQuestionNext}>다음</button>
           </div>
 
-          <div style={{ textAlign: 'center', marginTop: '20px' }}>
+          <div className="quiz-bottom-buttons">
+            <button onClick={handleSubmit}>제출</button>
             <button onClick={handleFinishQuiz}>퀴즈 끝내기</button>
           </div>
+
         </div>
       </div>
     </Main>
