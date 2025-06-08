@@ -140,7 +140,7 @@ function Quiz() {
         {
           question: 'Q3. 무무에게 먼저 다가가 말을 건 친구의 이름은 누구였나요?', //주의 집중
           options: [
-            '레이이',
+            '레이',
             '피피', //✅
             '키티',
             '토토'
@@ -156,7 +156,57 @@ function Quiz() {
           ]
         }
       ]
-    }
+    },
+    '아기 달팽이 달록': {
+      images: [
+        '/snail/snail1.png',
+        '/snail/snail2.png',
+        '/snail/snail3.png',
+        '/snail/snail4.png',
+        '/snail/snail5.png',
+        '/snail/snail6.png',
+        '/snail/snail7.png',
+        '/snail/snail8.png',
+      ],
+      questions: [
+        {
+          question: 'Q1. 달록은 어떤 친구를 만나 함께 길을 걸었나요?', //이해력
+          options: [
+            '토끼',
+            '새', //✅
+            '다람쥐',
+            '곰'
+          ]
+        },
+        {
+          question: 'Q2. 새는 왜 덤불 속에 숨어 있었나요?', //기억력
+          options: [
+            '달록을 피하려고',
+            '길을 잃어서',
+            '날개가 아파서', //✅
+            '잠을 자려고'
+          ]
+        },
+        {
+          question: 'Q3. 달록과 새가 마주했을 때, 새의 날개에는 무엇이 있었나요?', //주의 집중
+          options: [
+            '붕대',
+            '나뭇잎', //✅
+            '깃털 장식',
+            '지팡이'
+          ]
+        },
+        {
+          question: 'Q4. 마지막에 달록과 새가 함께 웃었던 이유는 무엇일까요?', //언어추론
+          options: [
+            '숲에서 맛있는 걸 찾았기 때문에',
+            '빨리 갈 수 있었기 때문에',
+            '함께 속도가 맞는 친구가 되었기 때문에', //✅
+            '다른 동물들이 박수를 쳤기 때문에'
+          ]
+        }
+      ]
+    },
   };
 
   const quiz = quizData[selectedTitle];
