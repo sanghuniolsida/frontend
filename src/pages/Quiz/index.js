@@ -216,6 +216,31 @@ function Quiz() {
   const slideStep = 120;
   const imageWidth = 340;
 
+  const speak = (text) => {
+    if (!window.speechSynthesis) return;
+
+    window.speechSynthesis.cancel(); 
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'ko-KR';
+    utterance.pitch = 1.2; 
+    utterance.rate = 0.95;
+
+    // ✅ 사용 가능한 voice 목록 중에서 Google 한국어 음성 찾기
+    const voices = window.speechSynthesis.getVoices();
+    const koreanVoice = voices.find(
+      (v) =>
+        v.lang === 'ko-KR' &&
+        (v.name.includes('Google') || v.name.includes('female') || v.name.includes('child'))
+    );
+
+    if (koreanVoice) {
+      utterance.voice = koreanVoice;
+    }
+
+    window.speechSynthesis.speak(utterance);
+  };
+
+
   if (!quiz) {
     return (
       <Main>
@@ -227,6 +252,7 @@ function Quiz() {
   }
 
   const { images, questions } = quiz;
+
   const maxTranslateX = -(images.length - 1) * imageWidth;
 
   const handleSlidePrev = () => {
@@ -278,6 +304,12 @@ function Quiz() {
 
           <div className="quiz-question-box">
             <p>{questions[currentQuestionIndex].question}</p>
+            <button
+              className="listen-button"
+              onClick={() => speak(questions[currentQuestionIndex].question)}
+            >
+              🔊 듣기
+            </button>
           </div>
 
           <div className="quiz-options">
