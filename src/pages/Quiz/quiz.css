@@ -122,6 +122,7 @@
 .quiz-nav-buttons {
   display: flex;
   justify-content: space-between;
+  margin-bottom: -40px;
 }
 
 .quiz-nav-buttons button {
@@ -132,6 +133,7 @@
   border: 2px solid black;
   cursor: pointer;
   font-size: 13px;
+  font-weight: bold;
 }
 
 .listen-button {
@@ -150,4 +152,63 @@
 .listen-button:hover {
   background-color: #ffd89b;
   transform: scale(1.05);
+}
+
+.quiz-options button.selected {
+  background-color: #f6df7b;
+  border: 2px solid #f2c94c;
+  font-weight: bold;
+}
+.result-message {
+  margin-top: 10px;
+  font-weight: bold;
+  color: #333;
+}
+
+.correct-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  pointer-events: none; /* 클릭 막지 않기 */
+  animation: fadeInOut 2s ease-in-out forwards;
+}
+
+.correct-content {
+  background: rgba(255, 255, 255, 0.9);
+  padding: 10px 20px;
+  font-size: 20px;
+  font-weight: bold;
+  border-radius: 20px;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.3);
+  animation: popZoom 0.5s ease;
+}
+
+@keyframes popZoom {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.correct-content.wrong {
+  background: rgba(255, 255, 255, 0.9);
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  font-size: 20px;
 }
