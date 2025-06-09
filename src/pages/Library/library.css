@@ -25,6 +25,14 @@
     background-color: #fffdf2;
     margin-right: -10px;
   }
+
+  .book-slot.filled {
+  border: 2px solid #000000;
+}
+
+  .book-slot.empty {
+    border: 3px dashed #ccc; 
+  }
   
   .book-placeholder {
     font-size: 2rem;

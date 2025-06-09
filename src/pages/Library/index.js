@@ -47,7 +47,7 @@ function Library() {
           {[...Array(bookSlots)].map((_, index) => (
             <div className="book-slot-wrapper" key={index}>
               <div
-                className="book-slot"
+                className={`book-slot ${presetBooks[index] ? 'filled' : 'empty'}`}
                 onClick={() => handleBookClick(presetBooks[index])}
               >
                 {presetBooks[index] ? (
