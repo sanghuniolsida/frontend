@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Main from '../../components/Main';
-import './secondstory.css'; // 독립된 스타일 적용
+import './secondstory.css';
 
 function SecondStoryPage() {
-  const [answers, setAnswers] = useState({});
+  const [selectedEnum, setSelectedEnum] = useState('');
   const [choices, setChoices] = useState([]);
   const navigate = useNavigate();
 
@@ -13,21 +13,33 @@ function SecondStoryPage() {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        const options = parsed?.secondHalfRecommendStory || [];
-        setChoices(options);
+        const original = parsed?.secondHalfRecommendStory || [];
+
+        const enumLabels = [
+          'FIRST_HALF_RECOMMEND_STORY',
+          'SECOND_HALF_RECOMMEND_STORY',
+          'THIRD_HALF_RECOMMEND_STORY'
+        ];
+
+        const renamed = original.map((item, index) => ({
+          enum: enumLabels[index] || `RECOMMEND_STORY_${index}`,
+          text: item.text || item // 기존 형식 호환
+        }));
+
+        setChoices(renamed);
       } catch (e) {
         console.error('JSON 파싱 오류:', e);
       }
     }
   }, []);
 
-  const handleChoice = (choice) => {
-    setAnswers({ 0: choice });
+
+  const handleChoice = (selected) => {
+    setSelectedEnum(selected.enum);
   };
 
   const handleNext = () => {
-    const subject = answers[0];
-    localStorage.setItem('secondHalfSubject', subject);
+    localStorage.setItem('secondHalfSubject', selectedEnum);
     navigate('/creating');
   };
 
@@ -40,15 +52,15 @@ function SecondStoryPage() {
 
           {choices.map((choice) => (
             <button
-              key={choice}
+              key={choice.enum}
               className="second-choice-btn"
               onClick={() => handleChoice(choice)}
               style={{
-                borderColor: answers[0] === choice ? '#F6DF7B' : '#222',
-                background: answers[0] === choice ? '#F6DF7B' : '#fff'
+                borderColor: selectedEnum === choice.enum ? '#F6DF7B' : '#222',
+                background: selectedEnum === choice.enum ? '#F6DF7B' : '#fff'
               }}
             >
-              {choice}
+              {choice.text}
             </button>
           ))}
 
@@ -56,7 +68,7 @@ function SecondStoryPage() {
             <button
               className="second-next-btn"
               onClick={handleNext}
-              disabled={!answers[0]}
+              disabled={!selectedEnum}
             >
               완료
             </button>

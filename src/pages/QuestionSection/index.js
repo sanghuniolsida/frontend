@@ -41,11 +41,29 @@ const questions = [
 function QuestionSectionPage() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState({});
-  const [shuffledChoices, setShuffledChoices] = useState([]);
+  const [shuffledChoices, setShuffledChoices] = useState({});
   const navigate = useNavigate();
   const current = questions[step];
 
+  const getFixedChoiceForNextStep = (step, currentAnswer) => {
+    if (step === 0) {
+      if (currentAnswer === '친구의 마음을 이해하는 이야기') return '숲속 놀이터';
+      if (currentAnswer === '서로 다른 속도를 이해하는 이야기') return '숲속 유치원';
+    }
+    if (step === 1) {
+      if (answers[0] === '서로 다른 속도를 이해하는 이야기' && currentAnswer === '숲속 유치원') {
+        return '느린 코끼리';
+      }
+      if (answers[0] === '친구의 마음을 이해하는 이야기' && currentAnswer === '숲속 놀이터') {
+        return '토끼';
+      }
+    }
+    return null;
+  };
+
   useEffect(() => {
+    if (shuffledChoices[step]) return;
+
     const shuffle = (array) => {
       const copy = [...array];
       for (let i = copy.length - 1; i > 0; i--) {
@@ -54,8 +72,20 @@ function QuestionSectionPage() {
       }
       return copy;
     };
-    setShuffledChoices(shuffle(current.options).slice(0, 3));
-  }, [step]);
+
+    const currentOptions = current.options;
+    let fixed = getFixedChoiceForNextStep(step - 1, answers[step - 1]);
+
+    if (step === 0) {
+      const fixedCandidates = ['친구의 마음을 이해하는 이야기', '서로 다른 속도를 이해하는 이야기'];
+      fixed = fixedCandidates[Math.floor(Math.random() * fixedCandidates.length)];
+    }
+    const filtered = fixed ? currentOptions.filter(o => o !== fixed) : currentOptions;
+    const randomChoices = shuffle(filtered).slice(0, 2);
+    const finalChoices = [...randomChoices, fixed].filter(Boolean);
+
+    setShuffledChoices(prev => ({ ...prev, [step]: finalChoices }));
+  }, [step, answers, current.options]);
 
   const handleChoice = (choice) => {
     setAnswers((prev) => ({ ...prev, [step]: choice }));
@@ -68,6 +98,67 @@ function QuestionSectionPage() {
       const subject = answers[0];
       const location = answers[1];
       const character = answers[2];
+
+      const predefinedCombos = [
+        {
+          subject: '서로 다른 속도를 이해하는 이야기',
+          location: '숲속 유치원',
+          character: '느린 코끼리',
+          storyData: {
+            midPartFairyTaleStory: [
+              '숲속 유치원에는 오늘도 동물 친구들이 모였어요. “안녕~!” 원숭이는 아기 코끼리 옆을 팔짝팔짝 뛰며 인사했어요. 코끼리는 천천히 고개를 끄덕이며 웃었지요. 모두가 다 같은 속도로 움직이는 건 아니에요.',
+              '“이따가 그네 타자! 그리고 모래놀이도 하고, 미끄럼틀도 타자!” 원숭이는 빠르게 말하며 신이 났어요. 코끼리는 조심스럽게 말하려 했지만, 입을 열기도 전에 원숭이는 벌써 딴 데를 보고 있었지요.',
+              '코끼리는 조심스럽게 입을 열었어요. “나도... 그네... 타고 싶...” 하지만 원숭이는 이미 저 멀리 뛰어가고 있었지요. 코끼리의 말은 끝까지 닿지 못했어요.',
+              '원숭이는 벌써 저 멀리 달려가고 있었어요. 코끼리는 아무 말도 하지 못한 채, 그 자리에 가만히 서 있었지요. 입을 열었지만, 마음은 닿지 않았어요.'
+            ],
+            secondHalfFairyTaleStory: [
+              '작은 병아리가 다가와 조용히 말을 걸어요.',
+              '코끼리는 혼자 멀리 놀이터를 떠나요.',
+              '원숭이는 코끼리에게 장난감을 던지며 장난쳐요.'
+            ],
+            imageUrls: [
+              '/slowspeak/slowspeak1.png',
+              '/slowspeak/slowspeak2.png',
+              '/slowspeak/slowspeak3.png',
+              '/slowspeak/slowspeak4.png'
+            ]
+          }
+        },
+        {
+          subject: '친구의 마음을 이해하는 이야기',
+          location: '숲속 놀이터',
+          character: '토끼',
+          storyData: {
+            midPartFairyTaleStory: [
+              '숲속 놀이터는 오늘도 시끌벅적했어요. 친구들이 웃고 떠들며 뛰어놀고 있었지요. 다람쥐는 미끄럼틀에서 내려오며 크게 웃었고, 토끼는 그네에 조용히 앉아 하늘을 올려다보았어요.',
+              '곰이 공을 들고 토끼 쪽으로 다가갔어요. “야, 너 여기서 뭐 해?” 곰이 말했어요. 토끼는 말없이 고개만 숙였지요. 다람쥐는 멀리서 그 모습을 조용히 바라보고 있었어요.',
+              '“이 공 받아 봐!” 곰이 갑자기 소리쳤어요. 토끼는 깜짝 놀라 그네에 꼭 붙어 앉았지요. 곰은 웃고 있었지만, 토끼는 점점 더 무서워졌어요. 그 모습을 본 다람쥐의 눈이 점점 커졌어요.',
+              '곰은 공을 꼭 쥔 채 한참 말이 없었어요. “난 그냥 장난친 건데…” 곰이 작게 말했지요. 다람쥐는 부드럽게 말했어요. “토끼는 무서웠대. 우리, 서로 기분을 생각하자.”',
+            ],
+            secondHalfFairyTaleStory: [
+              '토끼는 놀이터에서 달아나고 다시는 돌아오지 않아요.',
+              '곰은 멈춰 서서 조용히 자신의 행동을 되돌아봐요.',
+              '다람쥐는 곰에게 공을 빼앗고 혼자 놀기 시작해요.'
+            ],
+            imageUrls: [
+              '/friendprotect/friendprotect1.png',
+              '/friendprotect/friendprotect2.png',
+              '/friendprotect/friendprotect3.png',
+              '/friendprotect/friendprotect4.png'
+            ]
+          }
+        }
+      ];
+
+      const matched = predefinedCombos.find(
+        (combo) => combo.subject === subject && combo.location === location && combo.character === character
+      );
+
+      if (matched) {
+        localStorage.setItem('midPartStory', JSON.stringify(matched.storyData));
+        navigate('/storyprocess');
+        return;
+      }
 
       const requestBody = {
         fairyTaleSubject: enumMap.subject[subject] || 'ETC',
@@ -92,7 +183,7 @@ function QuestionSectionPage() {
         <div className="question-box">
           <div className="circle-deco top" />
           <div className="question-title">{current.title}</div>
-          {shuffledChoices.map((c) => (
+          {(shuffledChoices[step] || []).map((c) => (
             <button
               key={c}
               className="choice-btn"

@@ -11,7 +11,7 @@ import StoryProcess from './pages/StoryProcess';
 import StatsPage from './pages/StatsPage';
 import SecondStoryPage from './pages/SecondStory';
 import LibraryStory from './pages/LibraryStory';
-
+import PreSecondPage from './pages/PreSecond';
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
         <Route path="/stats" element={<StatsPage />} />
         <Route path="/secondstory" element={<SecondStoryPage />} />
         <Route path="/librarystory" element={<LibraryStory />} />
+        <Route path="/presecond" element={<PreSecondPage />} />
       </Routes>
     </Router>
   );
