@@ -11,9 +11,10 @@ function Header() {
     '/creating': { title: '이야기 쏙! 쏙!', icon: '/rainbow.png' },
     '/library': { title: '책장 쏙! 쏙!', icon: '/libraryicon.png' },
     '/home': { title: '이야기 쏙! 쏙!', icon: '' },
-    '/stats': { title: '성장 쑥! 쑥!', icon: '/Creating.png' },
+    '/stats': { title: '성장 쑥! 쑥!', icon: '/storylogo.png' },
     '/storyprocess': { title: '이야기 쏙! 쏙!', icon: '/storyprocess.png' },
     '/librarystory': { title: '이야기 쏙! 쏙!', icon: '/storyprocess.png' },
+
   };
 
   const { title, icon } = headerConfig[location.pathname] || {
