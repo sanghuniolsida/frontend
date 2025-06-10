@@ -24,13 +24,6 @@ function CreatingPage() {
           const midPart = JSON.parse(midPartRaw);
           const fairyTaleId = midPart.midPartFairyTaleId;
 
-          console.log('후반부 동화 생성 요청 파라미터:', {
-            secondHalfRecommendStory: secondHalfSubject,
-            midPartFairyTaleId: fairyTaleId,
-            otherRecommendStory: secondHalfSubject === 'ETC' ? otherSecondHalf : 'string',
-          });
-          console.log('Token:', token);
-
           const res = await fetch('https://story-sok-sok.kro.kr/api/fairy-tale/second-half', {
             method: 'POST',
             headers: {
@@ -48,7 +41,7 @@ function CreatingPage() {
           const data = await res.json();
 
           midPart.secondHalfFairyTaleStory = data.secondHalfFairyTaleStory;
-          midPart.imageUrls.push(data.imageUrl); // 5페이지 이미지 추가
+          // 이미지 생성은 storyprocess에서 개별 호출
           localStorage.setItem('midPartStory', JSON.stringify(midPart));
           navigate('/storyprocess');
         } else {
@@ -87,26 +80,6 @@ function CreatingPage() {
           const data = await res.json();
           const fairyTaleId = data.midPartFairyTaleId;
 
-          const imageUrls = [data.imageUrl];
-          for (let pageNum = 2; pageNum <= 4; pageNum++) {
-            const imageRes = await fetch(`https://story-sok-sok.kro.kr/api/fairy-tale/${fairyTaleId}/${pageNum}`, {
-              method: 'POST',
-              headers: {
-                'Content-Type': 'application/json',
-                Authorization: `Bearer ${token}`,
-              },
-            });
-
-            if (!imageRes.ok) {
-              const errorText = await imageRes.text();
-              console.error(`페이지 ${pageNum} 이미지 생성 실패:`, errorText);
-              throw new Error(`페이지 ${pageNum} 이미지 생성 실패`);
-            }
-
-            const imageData = await imageRes.json();
-            imageUrls.push(imageData.imageUrl);
-          }
-
           if (Array.isArray(data.secondHalfRecommendStory)) {
             data.secondHalfRecommendStory = data.secondHalfRecommendStory.map((text, index) => ({
               enum: `SECOND_HALF_RECOMMEND_${index}`,
@@ -114,13 +87,13 @@ function CreatingPage() {
             }));
           }
 
-          data.imageUrls = imageUrls;
+          data.imageUrls = [data.imageUrl]; // 이미지 없이 초기화, 이후 개별 호출
           localStorage.setItem('midPartStory', JSON.stringify(data));
           navigate('/storyprocess');
         }
       } catch (err) {
         console.error(err);
-        alert('동화 생성 또는 이미지 생성 중 오류가 발생했습니다.');
+        alert('동화 생성 중 오류가 발생했습니다.');
       }
     };
 

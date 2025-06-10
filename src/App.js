@@ -12,6 +12,8 @@ import StatsPage from './pages/StatsPage';
 import SecondStoryPage from './pages/SecondStory';
 import LibraryStory from './pages/LibraryStory';
 import PreSecondPage from './pages/PreSecond';
+import PredefinedStoryPage from './pages/PreDefined';
+import PreCreatingPage from './pages/PreCreating';
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
         <Route path="/secondstory" element={<SecondStoryPage />} />
         <Route path="/librarystory" element={<LibraryStory />} />
         <Route path="/presecond" element={<PreSecondPage />} />
+        <Route path="/predefined" element={<PredefinedStoryPage />} />
+        <Route path="/precreating" element={<PreCreatingPage />} />
       </Routes>
     </Router>
   );

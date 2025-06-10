@@ -10,13 +10,14 @@ function StoryProcess() {
 
   const storyList = parsed?.midPartFairyTaleStory || [];
   const secondHalf = parsed?.secondHalfFairyTaleStory || [];
-  const imageUrls = parsed?.imageUrls || [parsed?.imageUrl || '/default-image.png'];
   const hasSecondHalf = secondHalf.length > 0;
 
   const fullStory = hasSecondHalf ? [...storyList, ...secondHalf] : storyList;
   const [pageIndex, setPageIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [showModal, setShowModal] = useState(false);
+  const [imageUrls, setImageUrls] = useState(parsed?.imageUrls || [parsed?.imageUrl || '/default-image.png']);
+  const [isGenerating, setIsGenerating] = useState(false);
 
   const currentText = fullStory[pageIndex];
 
@@ -74,6 +75,48 @@ function StoryProcess() {
     navigate('/secondstory');
   };
 
+  const handleGenerateImage = async () => {
+    const token = localStorage.getItem('token');
+    const fairyTaleId = parsed?.midPartFairyTaleId;
+
+    if (!fairyTaleId || !token) return;
+
+    const isSecondHalfPage = pageIndex >= storyList.length;
+    const imagePageNum = isSecondHalfPage
+      ? pageIndex - storyList.length
+      : pageIndex + 1;
+
+    const url = isSecondHalfPage
+      ? `https://story-sok-sok.kro.kr/api/fairy-tale/second-half/${fairyTaleId}/${imagePageNum}`
+      : `https://story-sok-sok.kro.kr/api/fairy-tale/${fairyTaleId}/${imagePageNum}`;
+
+    try {
+      setIsGenerating(true);
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${token}`,
+        },
+      });
+
+      if (!res.ok) throw new Error('이미지 생성 실패');
+
+      const data = await res.json();
+      const newImageUrls = [...imageUrls];
+      newImageUrls[pageIndex] = data.imageUrl;
+      setImageUrls(newImageUrls);
+      parsed.imageUrls = newImageUrls;
+      localStorage.setItem('midPartStory', JSON.stringify(parsed));
+    } catch (err) {
+      console.error(err);
+      alert('이미지 생성 중 오류가 발생했습니다.');
+    } finally {
+      setIsGenerating(false);
+    }
+  };
+
+
   if (!parsed) {
     return (
       <Main>
@@ -87,30 +130,29 @@ function StoryProcess() {
   return (
     <Main>
       <div className="story-process-container">
-        <div className="story-image-box">
+        <div className="story-image-box" style={{ position: 'relative' }}>
           <img
-            src={imageUrls[pageIndex] || imageUrls[imageUrls.length - 1] || '/default-image.png'}
+            src={imageUrls[pageIndex] || '/default-image.png'}
             alt={`스토리 이미지 ${pageIndex + 1}`}
             className="story-image"
           />
+          {isGenerating && (
+            <div className="loading-overlay">
+              <div className="spinner" />
+            </div>
+          )}
         </div>
-
         <div className="story-text-box">
           <div className="page-indicator">{pageIndex + 1} / {fullStory.length}</div>
           <p className="story-text">{displayedText}</p>
 
           <div className="story-button-row">
-            <button className="story-nav-btn" onClick={handlePrev} disabled={pageIndex === 0}>
-              이전
-            </button>
+            <button className="story-nav-btn" onClick={handlePrev} disabled={pageIndex === 0}>이전</button>
+            <button className="story-nav-btn" onClick={handleGenerateImage} disabled={isGenerating}>그림 생성</button>
             {pageIndex === 3 && !hasSecondHalf ? (
-              <button className="story-nav-btn" onClick={handleGoToSecondStory}>
-                이어서 만들기
-              </button>
+              <button className="story-nav-btn" onClick={handleGoToSecondStory}>이어서 만들기</button>
             ) : (
-              <button className="story-nav-btn" onClick={handleNext}>
-                다음
-              </button>
+              <button className="story-nav-btn" onClick={handleNext}>다음</button>
             )}
           </div>
         </div>

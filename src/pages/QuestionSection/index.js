@@ -74,18 +74,35 @@ function QuestionSectionPage() {
     };
 
     const currentOptions = current.options;
-    let fixed = getFixedChoiceForNextStep(step - 1, answers[step - 1]);
+    const subject = answers[0];
+    const location = answers[1];
+    let fixed = null;
+
+    const predefinedSubjects = ['친구의 마음을 이해하는 이야기', '서로 다른 속도를 이해하는 이야기'];
 
     if (step === 0) {
-      const fixedCandidates = ['친구의 마음을 이해하는 이야기', '서로 다른 속도를 이해하는 이야기'];
+      const fixedCandidates = predefinedSubjects;
       fixed = fixedCandidates[Math.floor(Math.random() * fixedCandidates.length)];
+    } else if (step === 1 && predefinedSubjects.includes(subject)) {
+      if (subject === '친구의 마음을 이해하는 이야기') fixed = '숲속 놀이터';
+      if (subject === '서로 다른 속도를 이해하는 이야기') fixed = '숲속 유치원';
+    } else if (step === 2 && predefinedSubjects.includes(subject)) {
+      if (subject === '서로 다른 속도를 이해하는 이야기' && location === '숲속 유치원') {
+        fixed = '느린 코끼리';
+      }
+      if (subject === '친구의 마음을 이해하는 이야기' && location === '숲속 놀이터') {
+        fixed = '토끼';
+      }
     }
+
     const filtered = fixed ? currentOptions.filter(o => o !== fixed) : currentOptions;
     const randomChoices = shuffle(filtered).slice(0, 2);
-    const finalChoices = [...randomChoices, fixed].filter(Boolean);
+    const finalChoices = fixed ? [...randomChoices, fixed] : randomChoices;
 
     setShuffledChoices(prev => ({ ...prev, [step]: finalChoices }));
   }, [step, answers, current.options]);
+
+
 
   const handleChoice = (choice) => {
     setAnswers((prev) => ({ ...prev, [step]: choice }));
@@ -156,7 +173,7 @@ function QuestionSectionPage() {
 
       if (matched) {
         localStorage.setItem('midPartStory', JSON.stringify(matched.storyData));
-        navigate('/storyprocess');
+        navigate('/precreating');
         return;
       }
 
