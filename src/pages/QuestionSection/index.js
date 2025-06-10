@@ -62,6 +62,11 @@ function QuestionSectionPage() {
   };
 
   useEffect(() => {
+    localStorage.removeItem('midPartStory');
+    localStorage.removeItem('secondHalfSubject');
+    localStorage.removeItem('secondHalfResultStory');
+    localStorage.removeItem('secondHalfEtc');
+
     if (shuffledChoices[step]) return;
 
     const shuffle = (array) => {
@@ -150,7 +155,7 @@ function QuestionSectionPage() {
               '숲속 놀이터는 오늘도 시끌벅적했어요. 친구들이 웃고 떠들며 뛰어놀고 있었지요. 다람쥐는 미끄럼틀에서 내려오며 크게 웃었고, 토끼는 그네에 조용히 앉아 하늘을 올려다보았어요.',
               '곰이 공을 들고 토끼 쪽으로 다가갔어요. “야, 너 여기서 뭐 해?” 곰이 말했어요. 토끼는 말없이 고개만 숙였지요. 다람쥐는 멀리서 그 모습을 조용히 바라보고 있었어요.',
               '“이 공 받아 봐!” 곰이 갑자기 소리쳤어요. 토끼는 깜짝 놀라 그네에 꼭 붙어 앉았지요. 곰은 웃고 있었지만, 토끼는 점점 더 무서워졌어요. 그 모습을 본 다람쥐의 눈이 점점 커졌어요.',
-              '곰은 공을 꼭 쥔 채 한참 말이 없었어요. “난 그냥 장난친 건데…” 곰이 작게 말했지요. 다람쥐는 부드럽게 말했어요. “토끼는 무서웠대. 우리, 서로 기분을 생각하자.”',
+              '“그만해, 곰!” 다람쥐가 크게 외쳤어요. 곰은 깜짝 놀라 멈춰 섰고, 공을 꼭 쥔 손을 내렸지요. “토끼는 지금 무서워하고 있어.” 다람쥐의 눈빛은 누구보다 진지했어요.',
             ],
             secondHalfFairyTaleStory: [
               '토끼는 놀이터에서 달아나고 다시는 돌아오지 않아요.',

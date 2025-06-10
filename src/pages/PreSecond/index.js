@@ -4,7 +4,7 @@ import Main from '../../components/Main';
 import './PreSecondPage.css'; // 독립된 스타일 적용
 
 function PreSecondPage() {
-  const [answers, setAnswers] = useState({});
+  const [selected, setSelected] = useState('');
   const [choices, setChoices] = useState([]);
   const navigate = useNavigate();
 
@@ -13,7 +13,7 @@ function PreSecondPage() {
     if (stored) {
       try {
         const parsed = JSON.parse(stored);
-        const options = parsed?.secondHalfRecommendStory || [];
+        const options = parsed?.secondHalfFairyTaleStory || [];
         setChoices(options);
       } catch (e) {
         console.error('JSON parsing error:', e);
@@ -22,13 +22,12 @@ function PreSecondPage() {
   }, []);
 
   const handleChoice = (choice) => {
-    setAnswers({ 0: choice });
+    setSelected(choice);
   };
 
   const handleNext = () => {
-    const subject = answers[0];
-    localStorage.setItem('secondHalfSubject', subject);
-    navigate('/creating');
+    localStorage.setItem('secondHalfSubject', selected);
+    navigate('/precreating');
   };
 
   return (
@@ -38,14 +37,14 @@ function PreSecondPage() {
           <div className="presecond-circle-deco top" />
           <div className="presecond-question-title">이야기가 어떻게 전개되면 좋을까요?</div>
 
-          {choices.map((choice) => (
+          {choices.map((choice, idx) => (
             <button
-              key={choice}
+              key={idx}
               className="presecond-choice-btn"
               onClick={() => handleChoice(choice)}
               style={{
-                borderColor: answers[0] === choice ? '#F6DF7B' : '#222',
-                background: answers[0] === choice ? '#F6DF7B' : '#fff',
+                borderColor: selected === choice ? '#F6DF7B' : '#222',
+                background: selected === choice ? '#F6DF7B' : '#fff',
               }}
             >
               {choice}
@@ -56,7 +55,7 @@ function PreSecondPage() {
             <button
               className="presecond-next-btn"
               onClick={handleNext}
-              disabled={!answers[0]}
+              disabled={!selected}
             >
               완료
             </button>

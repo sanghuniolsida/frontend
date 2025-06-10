@@ -9,6 +9,45 @@ function PreCreatingPage() {
 
   useEffect(() => {
     const timer = setTimeout(() => {
+      const subject = localStorage.getItem('secondHalfSubject');
+      const stored = localStorage.getItem('midPartStory');
+
+      if (subject && stored) {
+        const parsed = JSON.parse(stored);
+
+        if (subject === '곰은 멈춰 서서 조용히 자신의 행동을 되돌아봐요.') {
+          parsed.secondHalfResultStory = [
+            '곰은 공을 꼭 쥔 채 한참 말이 없었어요. “난 그냥 장난친 건데…” 곰이 작게 말했지요. 다람쥐는 부드럽게 말했어요. “토끼는 무서웠대. 우리, 서로 기분을 생각하자.”',
+            '곰은 고개를 푹 숙였어요. “미안해… 장난이었는데, 널 무섭게 했구나.” 토끼는 조용히 고개를 끄덕였어요. 다람쥐는 작게 웃으며 두 친구를 바라보았지요.',
+            '곰도 조심스럽게 고개를 들었어요. 토끼는 작게 미소 지었고, 다람쥐는 활짝 웃었지요. 세 친구는 아무 말 없이도 서로의 마음을 느낄 수 있었어요. 놀이터에는 다시 햇살 같은 웃음이 퍼졌어요.',
+            '세 친구는 나란히 손을 잡고 놀이터를 걸어갔어요. “같이 놀자!” 곰이 말했고, 토끼도 미소 지었지요. 다람쥐는 조용히 고개를 끄덕였어요. 이제, 그들은 진짜 친구가 되었어요.',
+          ];
+          parsed.imageUrls.push(
+            '/friendprotect/friendprotect5.png',
+            '/friendprotect/friendprotect6.png',
+            '/friendprotect/friendprotect7.png',
+            '/friendprotect/friendprotect8.png'
+          );
+        }
+
+        else if (subject === '작은 병아리가 다가와 조용히 말을 걸어요.') {
+          parsed.secondHalfResultStory = [
+            '코끼리는 조용히 서 있었어요. 그때, 모래밭에 있던 병아리가 조심조심 다가와 고개를 갸웃했지요. “괜찮아?” 작은 목소리가 들렸어요.',
+            '코끼리는 입을 천천히 열었어요. “응… 나는… 그냥…” 병아리는 조용히 기다려 주었지요. 그렇게, 둘은 서로를 바라보았어요.',
+            '코끼리의 말이 끝났을 때, 멀리서 놀던 친구들이 하나둘 다가왔어요. 다람쥐, 토끼, 여우는 말없이 옆에 섰고, 원숭이도 천천히 걸음을 멈추었어요.',
+            '코끼리는 천천히 웃으며 말했어요. “나는... 천천히 말해. 그래도 같이 놀고 싶어.” 원숭이는 고개를 끄덕였어요. 모두 함께 둥글게 앉아, 천천히 웃으며 놀았답니다.',
+          ];
+          parsed.imageUrls.push(
+            '/slowspeak/slowspeak5.png',
+            '/slowspeak/slowspeak6.png',
+            '/slowspeak/slowspeak7.png',
+            '/slowspeak/slowspeak8.png'
+          );
+        }
+
+        localStorage.setItem('midPartStory', JSON.stringify(parsed));
+      }
+
       navigate('/predefined');
     }, 12000);
 

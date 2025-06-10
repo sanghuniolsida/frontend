@@ -8,15 +8,28 @@ function PredefinedStoryPage() {
   const stored = localStorage.getItem('midPartStory');
   const parsed = stored ? JSON.parse(stored) : null;
 
-  const storyList = parsed?.midPartFairyTaleStory || [];
-  const hasSecondHalf = parsed?.secondHalfFairyTaleStory?.length > 0;
+  const midPart = parsed?.midPartFairyTaleStory || [];
+  const secondHalf = parsed?.secondHalfResultStory || [];
+  const storyList = [...midPart, ...secondHalf];
+  const totalLength = storyList.length;
 
   const [pageIndex, setPageIndex] = useState(0);
   const [displayedText, setDisplayedText] = useState('');
   const [showModal, setShowModal] = useState(false);
-  const [imageUrls, setImageUrls] = useState(Array(storyList.length).fill(null));
+
+  const [imageUrls, setImageUrls] = useState(
+    Array.from({ length: totalLength }, (_, i) => parsed?.imageUrls?.[i] || null)
+  );
+
+  const [showImage, setShowImage] = useState(() => {
+    return Array.from({ length: totalLength }, (_, i) =>
+      secondHalf.length > 0 ? i < midPart.length : false
+    );
+  });
+
+
+
   const [isGenerating, setIsGenerating] = useState(false);
-  const [showImage, setShowImage] = useState(Array(storyList.length).fill(false));
 
   const currentText = storyList[pageIndex];
 
@@ -68,10 +81,13 @@ function PredefinedStoryPage() {
   };
 
   const handleGoToSecondStory = () => {
-    navigate('/secondstory');
+    navigate('/presecond');
   };
 
   const handleGenerateImage = () => {
+    // 이미지 이미 있는 경우 클릭해도 재생성 막기
+    if (showImage[pageIndex]) return;
+
     setIsGenerating(true);
 
     setTimeout(() => {
@@ -84,8 +100,9 @@ function PredefinedStoryPage() {
       setShowImage(updatedShow);
 
       setIsGenerating(false);
-    }, 7000); // 이미지 로딩 시뮬레이션
+    }, 7000);
   };
+
 
   if (!parsed) {
     return (
@@ -132,11 +149,11 @@ function PredefinedStoryPage() {
             <button
               className="predefined-nav-btn"
               onClick={handleGenerateImage}
-              disabled={isGenerating}
+              disabled={isGenerating || showImage[pageIndex]}
             >
               그림 생성
             </button>
-            {pageIndex === 3 && !hasSecondHalf ? (
+            {pageIndex === midPart.length - 1 && secondHalf.length === 0 ? (
               <button className="predefined-nav-btn" onClick={handleGoToSecondStory}>
                 이어서 만들기
               </button>
