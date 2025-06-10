@@ -49,6 +49,8 @@ function QuestionSectionPage() {
     if (step === 0) {
       if (currentAnswer === '친구의 마음을 이해하는 이야기') return '숲속 놀이터';
       if (currentAnswer === '서로 다른 속도를 이해하는 이야기') return '숲속 유치원';
+      if (currentAnswer === '친구가 되는 이야기') return '별빛이 내리는 숲속';
+      if (currentAnswer === '함께하는 기쁨을 알려주는 이야기') return '눈 내리는 하얀 나라';
     }
     if (step === 1) {
       if (answers[0] === '서로 다른 속도를 이해하는 이야기' && currentAnswer === '숲속 유치원') {
@@ -56,6 +58,12 @@ function QuestionSectionPage() {
       }
       if (answers[0] === '친구의 마음을 이해하는 이야기' && currentAnswer === '숲속 놀이터') {
         return '토끼';
+      }
+      if (answers[0] === '친구가 되는 이야기' && currentAnswer === '눈 내리는 하얀 나라') {
+        return '북극곰';
+      }
+      if (answers[0] === '함께하는 기쁨을 알려주는 이야기' && currentAnswer === '별빛이 내리는 숲속') {
+        return '고슴도치';
       }
     }
     return null;
@@ -83,7 +91,7 @@ function QuestionSectionPage() {
     const location = answers[1];
     let fixed = null;
 
-    const predefinedSubjects = ['친구의 마음을 이해하는 이야기', '서로 다른 속도를 이해하는 이야기'];
+    const predefinedSubjects = ['친구의 마음을 이해하는 이야기', '서로 다른 속도를 이해하는 이야기', '친구가 되는 이야기', '함께하는 기쁨을 알려주는 이야기'];
 
     if (step === 0) {
       const fixedCandidates = predefinedSubjects;
@@ -91,6 +99,8 @@ function QuestionSectionPage() {
     } else if (step === 1 && predefinedSubjects.includes(subject)) {
       if (subject === '친구의 마음을 이해하는 이야기') fixed = '숲속 놀이터';
       if (subject === '서로 다른 속도를 이해하는 이야기') fixed = '숲속 유치원';
+      if (subject === '친구가 되는 이야기') fixed = '눈 내리는 하얀 나라';
+      if (subject === '함께하는 기쁨을 알려주는 이야기') fixed = '별빛이 내리는 숲속';
     } else if (step === 2 && predefinedSubjects.includes(subject)) {
       if (subject === '서로 다른 속도를 이해하는 이야기' && location === '숲속 유치원') {
         fixed = '느린 코끼리';
@@ -98,6 +108,13 @@ function QuestionSectionPage() {
       if (subject === '친구의 마음을 이해하는 이야기' && location === '숲속 놀이터') {
         fixed = '토끼';
       }
+      if (subject === '친구가 되는 이야기' && location === '눈 내리는 하얀 나라') {
+        fixed = '북극곰';
+      }
+      if (subject === '함께하는 기쁨을 알려주는 이야기' && location === '별빛이 내리는 숲속') {
+        fixed = '고슴도치';
+      }
+
     }
 
     const filtered = fixed ? currentOptions.filter(o => o !== fixed) : currentOptions;
@@ -169,7 +186,55 @@ function QuestionSectionPage() {
               '/friendprotect/friendprotect4.png'
             ]
           }
-        }
+        },
+        {
+          subject: '친구가 되는 이야기',
+          location: '눈 내리는 하얀 나라',
+          character: '북극곰',
+          storyData: {
+            midPartFairyTaleStory: [
+              '하얀 나라, 눈으로 덮인 들판에 크고 하얀 북극곰 한 마리가 살았어요. 곰은 늘 혼자였지만, 친구들과 놀고 싶었답니다. 그저 멀리서 바라보기만 했어요.',
+              '북극곰은 조심스럽게 다가가 보았어요. 하지만 친구들은 놀라며 도망쳐 버렸죠. “내가 너무 커서 그런 걸까?”  곰은 그 자리에 멈춰 섰어요.',
+              '“나는 그냥… 같이 놀고 싶었는데…” 북극곰은 앞발로 눈을 톡톡 건드렸어요. 친구들의 웃음소리는 멀리서 들렸지만, 곰은 등을 돌리고 조용히 앉아 있었어요.',
+              '곰은 작은 눈사람을 만들어 조심스럽게 놔두었어요. “이걸 보면 조금은… 웃을 수 있을까?” 곰은 아무 말도 없이 조용히 돌아섰어요. 하얀 눈 위엔 커다란 발자국만 남았답니다.',
+            ],
+            secondHalfFairyTaleStory: [
+              '친구들이 곰을 찾아가 함께 놀자고 해요', //✅
+              '북극곰은 영원히 혼자 살게 되었어요.',
+              '친구들이 눈사람을 부수고 도망가요.'
+            ],
+            imageUrls: [
+              '/friendbear/friednbear1.png',
+              '/friendbear/friednbear2.png',
+              '/friendbear/friednbear3.png',
+              '/friendbear/friednbear4.png'
+            ]
+          }
+        },
+        {
+          subject: '함께하는 기쁨을 알려주는 이야기',
+          location: '별빛이 내리는 숲속',
+          character: '고슴도치',
+          storyData: {
+            midPartFairyTaleStory: [
+              '깊고 고요한 숲속, 별빛이 속삭이는 밤이었어요. 작은 고슴도치 ‘토치’는 풀숲에 앉아 밤하늘을 바라보았죠. 토치의 눈동자엔 별들이 가득 담겼어요. 오늘은 왠지 특별한 일이 일어날 것 같았어요.',
+              '깜깜한 하늘에서 무언가 반짝이며 떨어지기 시작했어요. 은빛의 작은 조각들이 토치 앞에 사르르 내려앉았죠. 마치 별빛이 손에 닿을 듯 가까워졌어요. 토치는 깜짝 놀라 조각들을 바라보았어요.',
+              '토치는 작은 앞발로 조심스레 조각 하나를 집어 보았어요. 달빛 조각은 따뜻하고 부드러웠죠. 손안에서 은은하게 빛나며 가슴이 포근해졌어요. 토치는 살며시 미소 지었답니다.',
+              '토치는 천천히, 하나씩 조각들을 모으기 시작했어요. 풀잎 위, 나뭇가지 사이에도 달빛 조각이 숨어 있었죠. 그 조각들은 너무 예뻐서 그냥 지나칠 수 없었어요. 숲은 어느새 작은 빛들로 반짝이기 시작했답니다.',
+            ],
+            secondHalfFairyTaleStory: [
+              '누군가에게 조심스레 나눠보기로 해요.', //✅
+              '혼자서 몰래 감춰두기로 해요.',
+              '달빛 조각을 하늘로 다시 던져버려요.'
+            ],
+            imageUrls: [
+              '/hedgehog/hedgehog1.png',
+              '/hedgehog/hedgehog2.png',
+              '/hedgehog/hedgehog3.png',
+              '/hedgehog/hedgehog4.png'
+            ]
+          }
+        }              
       ];
 
       const matched = predefinedCombos.find(

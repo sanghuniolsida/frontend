@@ -45,6 +45,36 @@ function PreCreatingPage() {
           );
         }
 
+        else if (subject === '친구들이 곰을 찾아가 함께 놀자고 해요') {
+          parsed.secondHalfResultStory = [
+            '“이거… 누가 만든 거지?” 토끼가 속삭였어요. 다람쥐는 조심스럽게 눈사람을 쓰다듬었고, 여우는 눈길 위에 남은 커다란 발자국을 따라 눈을 돌렸어요.',
+            '“곰이 우리한테 주고 간 거야.” 토끼는 작게 말하며 눈길을 바라보았어요. 다람쥐와 여우도 조심스럽게 고개를 끄덕였죠. “우리… 곰한테 가 보자.”',
+            '북극곰은 오늘도 혼자 앉아 있었어요. 그런데 멀리서 발소리가 들렸죠. 고개를 든 곰은 눈을 동그랗게 떴어요. “어… 오는 거야…?”',
+            '“곰아, 우리랑 같이 놀자!” 친구들이 말하자, 북극곰은 조용히 웃으며 고개를 끄덕였어요. 눈밭 위에는 웃음소리가 퍼졌고, 그날부터 북극곰은 혼자가 아니었답니다.',
+          ];
+          parsed.imageUrls.push(
+            '/friendbear/friednbear5.png',
+            '/friendbear/friednbear6.png',
+            '/friendbear/friednbear7.png',
+            '/friendbear/friednbear8.png'
+          );
+        }
+
+        else if (subject === '누군가에게 조심스레 나눠보기로 해요.') {
+          parsed.secondHalfResultStory = [
+            '토치는 조심스레 조각 하나를 들고 부엉이에게 다가갔어요. 부엉이는 살짝 놀란 듯 눈을 껌뻑였죠. “이거... 받아볼래?” 토치가 말했어요. 떨리는 마음을 꾹 눌러 담은 용기였어요.',
+            '달빛 조각이 부엉이의 날개 끝에 닿자, 그 눈에 반짝임이 돌아왔어요. 차가웠던 마음속 어둠이 살며시 녹아내렸죠. 부엉이는 처음으로 토치에게 고개를 끄덕였답니다.',
+            '토치와 부엉이는 함께 숲을 걸으며 조각들을 나누었어요. 다람쥐, 사슴, 여우… 친구들의 얼굴에 빛이 퍼졌죠. 달빛 조각이 손에서 손으로 전해졌어요. 어둠이 걷히고, 숲은 따스한 빛으로 가득 찼답니다.',
+            '숲이 은은한 달빛으로 물든 그 밤, 토치는 다시 고개를 들어 하늘을 바라보았어요. 이젠 혼자가 아니었어요. 곁엔 빛을 함께 나눈 친구들이 있었죠.',
+          ];
+          parsed.imageUrls.push(
+            '/hedgehog/hedgehog5.png',
+            '/hedgehog/hedgehog6.png',
+            '/hedgehog/hedgehog7.png',
+            '/hedgehog/hedgehog8.png'
+          );
+        }
+
         localStorage.setItem('midPartStory', JSON.stringify(parsed));
       }
 
