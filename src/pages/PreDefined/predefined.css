@@ -141,3 +141,12 @@
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
+
+.predefined-speak-btn,.predefined-stop-btn {
+  border-radius: 20px;
+  border-color: rgb(215, 179, 37);
+}
+
+.predefined-speak-btn{
+  margin-right: 3px;
+}

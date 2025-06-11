@@ -27,10 +27,7 @@ function PredefinedStoryPage() {
     );
   });
 
-
-
   const [isGenerating, setIsGenerating] = useState(false);
-
   const currentText = storyList[pageIndex];
 
   useEffect(() => {
@@ -94,13 +91,11 @@ function PredefinedStoryPage() {
     navigate('/library');
   };
 
-
   const handleGoToSecondStory = () => {
     navigate('/presecond');
   };
 
   const handleGenerateImage = () => {
-    // 이미지 이미 있는 경우 클릭해도 재생성 막기
     if (showImage[pageIndex]) return;
 
     setIsGenerating(true);
@@ -115,9 +110,32 @@ function PredefinedStoryPage() {
       setShowImage(updatedShow);
 
       setIsGenerating(false);
-    }, 7000);
+    }, 14000);
   };
 
+  const handleSpeak = () => {
+    if (!currentText) return;
+
+    const synth = window.speechSynthesis;
+    const voices = synth.getVoices();
+
+    const koreanVoice =
+      voices.find(v => v.lang === 'ko-KR' && v.name.includes('Google')) ||
+      voices.find(v => v.lang === 'ko-KR');
+
+    const utterance = new SpeechSynthesisUtterance(currentText);
+    utterance.lang = 'ko-KR';
+    if (koreanVoice) {
+      utterance.voice = koreanVoice;
+    }
+
+    synth.cancel();
+    synth.speak(utterance);
+  };
+
+  const handleStopSpeak = () => {
+    window.speechSynthesis.cancel();
+  };
 
   if (!parsed) {
     return (
@@ -148,6 +166,8 @@ function PredefinedStoryPage() {
         </div>
 
         <div className="predefined-text-box">
+          <button className="predefined-speak-btn" onClick={handleSpeak}>🔊</button>
+          <button className="predefined-stop-btn" onClick={handleStopSpeak}>🔇</button>
           <div className="predefined-page-indicator">
             {pageIndex + 1} / {storyList.length}
           </div>

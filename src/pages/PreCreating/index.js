@@ -79,7 +79,7 @@ function PreCreatingPage() {
       }
 
       navigate('/predefined');
-    }, 12000);
+    }, 15000);
 
     return () => clearTimeout(timer);
   }, [navigate]);
