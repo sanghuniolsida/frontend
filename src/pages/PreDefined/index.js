@@ -76,9 +76,24 @@ function PredefinedStoryPage() {
     setShowModal(false);
   };
 
-  const handleGoToQuiz = () => {
-    navigate('/quiz');
+  const handleSaveToBookshelf = () => {
+    if (!parsed) return;
+
+    const bookshelf = JSON.parse(localStorage.getItem('bookshelf') || '[]');
+    const newEntry = {
+      title: parsed.fairyTaleSubject || parsed.title,
+      date: new Date().toISOString(),
+      midPartFairyTaleStory: parsed.midPartFairyTaleStory || [],
+      secondHalfFairyTaleStory: parsed.secondHalfResultStory || [],
+      imageUrls: parsed.imageUrls || [],
+      cover: parsed.titleImageUrls?.[0] || parsed.secondHalfResultStory
+    };
+
+    localStorage.setItem('bookshelf', JSON.stringify([...bookshelf, newEntry]));
+    alert('책장에 저장 완료!');
+    navigate('/library');
   };
+
 
   const handleGoToSecondStory = () => {
     navigate('/presecond');
@@ -172,7 +187,7 @@ function PredefinedStoryPage() {
             <p>동화가 끝났어요! 다음으로 무엇을 할까요?</p>
             <div className="predefined-modal-buttons">
               <button onClick={handleRestart}>다시 보기</button>
-              <button onClick={handleGoToQuiz}>퀴즈 쏙!쏙!</button>
+              <button onClick={handleSaveToBookshelf}>책장에 저장</button>
             </div>
           </div>
         </div>

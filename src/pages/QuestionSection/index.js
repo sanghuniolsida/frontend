@@ -184,6 +184,9 @@ function QuestionSectionPage() {
               '/friendprotect/friendprotect2.png',
               '/friendprotect/friendprotect3.png',
               '/friendprotect/friendprotect4.png'
+            ],
+            titleImageUrls: [
+              '/friendprotect/friendprotect0.png'
             ]
           }
         },
@@ -192,6 +195,9 @@ function QuestionSectionPage() {
           location: '눈 내리는 하얀 나라',
           character: '북극곰',
           storyData: {
+            title: [
+              '친구가 필요해'
+            ],
             midPartFairyTaleStory: [
               '하얀 나라, 눈으로 덮인 들판에 크고 하얀 북극곰 한 마리가 살았어요. 곰은 늘 혼자였지만, 친구들과 놀고 싶었답니다. 그저 멀리서 바라보기만 했어요.',
               '북극곰은 조심스럽게 다가가 보았어요. 하지만 친구들은 놀라며 도망쳐 버렸죠. “내가 너무 커서 그런 걸까?”  곰은 그 자리에 멈춰 섰어요.',
@@ -208,6 +214,9 @@ function QuestionSectionPage() {
               '/friendbear/friednbear2.png',
               '/friendbear/friednbear3.png',
               '/friendbear/friednbear4.png'
+            ],
+            titleImageUrls: [
+              '/friendbear/friednbear0.png'
             ]
           }
         },
