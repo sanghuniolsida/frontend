@@ -145,7 +145,7 @@ function QuestionSectionPage() {
           character: '느린 코끼리',
           storyData: {
             title: [
-              '친구가 필요해'
+              '천천히 말해도 괜찮아'
             ],
             midPartFairyTaleStory: [
               '숲속 유치원에는 오늘도 동물 친구들이 모였어요. “안녕~!” 원숭이는 아기 코끼리 옆을 팔짝팔짝 뛰며 인사했어요. 코끼리는 천천히 고개를 끄덕이며 웃었지요. 모두가 다 같은 속도로 움직이는 건 아니에요.',
