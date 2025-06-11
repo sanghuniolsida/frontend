@@ -244,6 +244,32 @@ function LibraryStory() {
     navigate('/library');
   };
 
+  const handleSpeak = () => {
+    if (!currentText) return;
+
+    const synth = window.speechSynthesis;
+    const voices = synth.getVoices();
+
+    const koreanVoice =
+      voices.find(v => v.lang === 'ko-KR' && v.name.includes('Google')) ||
+      voices.find(v => v.lang === 'ko-KR');
+
+    const utterance = new SpeechSynthesisUtterance(currentText);
+    utterance.lang = 'ko-KR';
+    if (koreanVoice) {
+      utterance.voice = koreanVoice;
+    }
+
+    synth.cancel(); // 중복 방지
+    synth.speak(utterance);
+  };
+
+
+const handleStopSpeak = () => {
+  window.speechSynthesis.cancel(); 
+};
+
+
   if (!story) {
     return (
       <Main>
@@ -266,6 +292,8 @@ function LibraryStory() {
         </div>
 
         <div className="library-text-box">
+          <button className="library-sepak-btn" onClick={handleSpeak}>🔊</button>
+          <button className="library-stop-btn" onClick={handleStopSpeak}>🔇</button>
           <div className="library-page-indicator">{pageIndex + 1} / {story.texts.length}</div>
           <p className="library-text">{displayedText}</p>
 

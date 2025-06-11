@@ -118,3 +118,12 @@
   50% { opacity: 0.4; }
   100% { opacity: 1; }
 }
+
+.library-sepak-btn,.library-stop-btn {
+  border-radius: 20px;
+  border-color: rgb(215, 179, 37);
+}
+
+.library-sepak-btn{
+  margin-right: 3px;
+}
