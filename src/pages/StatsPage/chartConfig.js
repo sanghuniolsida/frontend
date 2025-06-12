@@ -2,7 +2,7 @@ export const stats = [
   { key: '이해력', label: '이해력', value: 0 },
   { key: '기억력', label: '기억력', value: 0 },
   { key: '주의 집중력', label: '주의 집중력', value: 0 },
-  { key: '언어 추론력', label: '언어 추론력', value: 0 },
+  { key: '사고력', label: '사고력', value: 0 },
 ];
 
 // 레이더 차트 옵션 설정

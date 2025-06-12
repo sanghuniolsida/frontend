@@ -56,7 +56,7 @@ function Quiz() {
         },
         {
           question: '퀴즈4. 퍼피와 키티가 마지막에 어떻게 되었나요?', //언어추론
-          category: '언어 추론력',
+          category: '사고력',
           options: [
             '끝까지 말도 안 하고 헤어졌어요',
             '둘 다 집으로 돌아갔어요',
@@ -114,7 +114,7 @@ function Quiz() {
         },
         {
           question: '퀴즈4. 구름이 처음에 슬펐던 이유는 무엇인가요?', //언어추론
-          category: '언어 추론력',
+          category: '사고력',
           options: [
             '바람이 불어서요',
             '당근을 못 먹어서요',
@@ -172,7 +172,7 @@ function Quiz() {
         },
         {
           question: '퀴즈4. 무무는 마지막에 어떤 마음이 되었나요?', //언어추론
-          category: '언어 추론력',
+          category: '사고력',
           options: [
             '더 화가 났어요',
             '슬퍼졌어요',
@@ -230,7 +230,7 @@ function Quiz() {
         },
         {
           question: '퀴즈4. 마지막에 달록과 새가 함께 웃었던 이유는 무엇일까요?', //언어추론
-          category: '언어 추론력',
+          category: '사고력',
           options: [
             '숲에서 맛있는 걸 찾았기 때문에',
             '빨리 갈 수 있었기 때문에',
@@ -269,7 +269,7 @@ function Quiz() {
           category: '기억력',
           options: [
             '편지',
-            '코카콜라',
+            '간식',
             '눈사람', //✅
             '선물 상자'
           ],
@@ -288,7 +288,7 @@ function Quiz() {
         },
         {
           question: '퀴즈4. “곰아, 우리랑 같이 놀자!”라는 말에서 친구들의 마음은 어땠을까요?', //언어추론
-          category: '언어 추론력',
+          category: '사고력',
           options: [
             '곰을 놀리려는 마음이에요.',
             '곰을 쫓아내려는 마음이에요.',
@@ -346,7 +346,7 @@ function Quiz() {
         },
         {
           question: '퀴즈4. “우리, 서로 기분을 생각하자.”라는 말에서 다람쥐의 마음은 무엇인가요?', //언어추론
-          category: '언어 추론력',
+          category: '사고력',
           options: [
             '모두가 기분 나빠졌으면 좋겠다는 마음',
             '더 이상 같이 놀지 말자는 마음',
@@ -404,12 +404,70 @@ function Quiz() {
         },
         {
           question: '퀴즈4. “빛은 함께 나눌 때 더 밝아진다”는 말은 어떤 뜻인가요?', //언어추론
-          category: '언어 추론력',
+          category: '사고력',
           options: [
             '빛은 어두운 곳에서만 사용할 수 있다.',
             '친구에게 물건을 주면 다시 돌려받아야 한다는 뜻이에요.',
             '밝은 물건은 금방 사라진다는 뜻이에요.',
             '혼자보다 친구와 함께 있을 때 기쁨이 커진다는 뜻이에요.', //✅
+          ],
+          answerIndex: 3
+        }
+      ]
+    },
+        '느려도 괜찮아': {
+      images: [
+          '/slowspeak/slowspeak1.png',
+          '/slowspeak/slowspeak2.png',
+          '/slowspeak/slowspeak3.png',
+          '/slowspeak/slowspeak4.png',
+          '/slowspeak/slowspeak5.png',
+          '/slowspeak/slowspeak6.png',
+          '/slowspeak/slowspeak7.png',
+          '/slowspeak/slowspeak8.png',
+      ],
+      questions: [
+        {
+          question: '퀴즈1. 코끼리가 원숭이에게 하고 싶었던 말은 무엇이었나요?', //이해력
+          category: '이해력',
+          options: [
+            '나는 배고파.',
+            '나도 그네 타고 싶어.', //✅
+            '나는 집에 갈래.',
+            '그네 무서워.'
+          ],
+          answerIndex: 1
+        },
+        {
+          question: '퀴즈2. 코끼리에게 가장 먼저 다가와 말을 건 친구는 누구였나요?', //기억력
+          category: '기억력',
+          options: [
+            '여우',
+            '다람쥐',
+            '병아리', //✅
+            '토끼'
+          ],
+          answerIndex: 2
+        },
+        {
+          question: '퀴즈3. 원숭이는 코끼리의 말을 들었나요?', //주의 집중
+          category: '주의 집중력',
+          options: [
+            '처음부터 끝까지 들었다.',
+            '말이 끝나기 전에 자리를 떴다.', //✅
+            '아예 듣지 않았다.',
+            '코끼리 말을 끊고 떠났다.'
+          ],
+          answerIndex: 1
+        },
+        {
+          question: '퀴즈4. 이 이야기에서 친구들이 배운 가장 중요한 교훈은 무엇인가요?', //언어추론
+          category: '사고력',
+          options: [
+            '빠르게 말하는 것이 좋다.',
+            '그네를 먼저 타는 것이 중요하다.',
+            '항상 조용히 있어야 한다.',
+            '말이 느린 친구도 기다려 주는 것이 중요하다.', //✅
           ],
           answerIndex: 3
         }

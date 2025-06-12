@@ -91,7 +91,7 @@ function QuestionSectionPage() {
     const location = answers[1];
     let fixed = null;
 
-    const predefinedSubjects = ['친구의 마음을 이해하는 이야기', '서로 다른 속도를 이해하는 이야기', '친구가 되는 이야기', '함께하는 기쁨을 알려주는 이야기'];
+    const predefinedSubjects = ['친구의 마음을 이해하는 이야기', '서로 다른 속도를 이해하는 이야기', '친구가 되는 이야기', '함께하는 기쁨을 알려주는 이야기', '차이를 존중하는 이야기'];
 
     if (step === 0) {
       const fixedCandidates = predefinedSubjects;
@@ -101,11 +101,13 @@ function QuestionSectionPage() {
       if (subject === '서로 다른 속도를 이해하는 이야기') fixed = '숲속 유치원';
       if (subject === '친구가 되는 이야기') fixed = '눈 내리는 하얀 나라';
       if (subject === '함께하는 기쁨을 알려주는 이야기') fixed = '별빛이 내리는 숲속';
+      if (subject === '차이를 존중하는 이야기') fixed = '푸른 숲';
     } else if (step === 2 && predefinedSubjects.includes(subject)) {
       if (subject === '서로 다른 속도를 이해하는 이야기' && location === '숲속 유치원') fixed = '느린 코끼리';
       if (subject === '친구의 마음을 이해하는 이야기' && location === '숲속 놀이터') fixed = '토끼';
       if (subject === '친구가 되는 이야기' && location === '눈 내리는 하얀 나라') fixed = '북극곰';
       if (subject === '함께하는 기쁨을 알려주는 이야기' && location === '별빛이 내리는 숲속') fixed = '고슴도치';
+      if (subject === '차이를 존중하는 이야기' && location === '푸른 숲') fixed = '달팽이';
     }
 
     const filtered = fixed ? currentOptions.filter(o => o !== fixed) : currentOptions;
@@ -121,13 +123,15 @@ function QuestionSectionPage() {
         (subject === '친구의 마음을 이해하는 이야기' && fixed === '숲속 놀이터') ||
         (subject === '서로 다른 속도를 이해하는 이야기' && fixed === '숲속 유치원') ||
         (subject === '친구가 되는 이야기' && fixed === '눈 내리는 하얀 나라') ||
-        (subject === '함께하는 기쁨을 알려주는 이야기' && fixed === '별빛이 내리는 숲속');
+        (subject === '함께하는 기쁨을 알려주는 이야기' && fixed === '별빛이 내리는 숲속') ||
+        (subject === '차이를 존중하는 이야기' && fixed === '푸른 숲');
     } else if (step === 2) {
       includeFixed =
         (subject === '서로 다른 속도를 이해하는 이야기' && location === '숲속 유치원' && fixed === '느린 코끼리') ||
         (subject === '친구의 마음을 이해하는 이야기' && location === '숲속 놀이터' && fixed === '토끼') ||
         (subject === '친구가 되는 이야기' && location === '눈 내리는 하얀 나라' && fixed === '북극곰') ||
-        (subject === '함께하는 기쁨을 알려주는 이야기' && location === '별빛이 내리는 숲속' && fixed === '고슴도치');
+        (subject === '함께하는 기쁨을 알려주는 이야기' && location === '별빛이 내리는 숲속' && fixed === '고슴도치') ||
+        (subject === '차이를 존중하는 이야기' && location === '푸른 숲' && fixed === '달팽이');
     }
 
     const finalChoices = includeFixed && fixed
@@ -159,7 +163,7 @@ function QuestionSectionPage() {
           character: '느린 코끼리',
           storyData: {
             title: [
-              '천천히 말해도 괜찮아'
+              '느려도 괜찮아'
             ],
             midPartFairyTaleStory: [
               '숲속 유치원에는 오늘도 동물 친구들이 모였어요. “안녕!” 원숭이는 아기 코끼리 옆을 팔짝팔짝 뛰며 인사했어요. 코끼리는 천천히 고개를 끄덕이며 웃었지요. 모두가 다 같은 속도로 움직이는 건 아니에요.',
@@ -272,7 +276,37 @@ function QuestionSectionPage() {
               '/hedgehog/hedgehog0.png'
             ]
           }
-        }              
+        },
+        {
+          subject: '차이를 존중하는 이야기',
+          location: '푸른 숲',
+          character: '달팽이',
+          storyData: {
+            title: [
+              '아기 달팽이 달록'
+            ],
+            midPartFairyTaleStory: [
+              '푸른 숲속, 조용히 길을 걷는 달팽이 ‘달록’이 있었어요. 토끼와 다람쥐 친구들은 폴짝폴짝 뛰어가며 신나게 놀고 있었지요. 달록은 천천히 움직였지만, 얼굴에는 부드러운 미소가 있었어요. “나는 내 속도로 오늘도 여행을 떠나볼 거야!” 달록은 속삭였어요.',
+              '하지만 숲속 친구들은 달록을 보며 웃기 시작했어요. “저 달팽이는 왜 이렇게 느려?” 다람쥐와 토끼가 킥킥대며 말했죠. 달록은 고개를 숙이고 조용히 멈춰 섰어요. 처음으로 ‘나는 너무 느린 걸까?’ 하는 생각이 들었답니다.',
+              '달록은 조용히 혼자 길을 걸었어요. 다람쥐와 토끼는 저 멀리서 떠들며 앞서 나갔지요. 달록은 괜히 마음이 무거워졌어요. “내가 느리다고 해서 친구가 될 수 없는 걸까…” 달록은 속으로 중얼였어요.',
+              '달록은 조용히 숲길을 걷다가 이상한 기운을 느꼈어요. 커다란 덤불 속에서 반짝이는 눈 두 개가 그를 지켜보고 있었죠. “어… 저건 뭐지?” 달록은 살짝 멈춰서 긴장했어요. 주변은 조용했지만, 마음속엔 작은 두려움이 스며들었어요.',
+            ],
+            secondHalfFairyTaleStory: [
+              '달록이 풀숲 속 새를 발견한다.', //✅
+              '달록이 숲을 떠나기로 한다.',
+              '달록이 토끼와 다람쥐에게 사과한다.'
+            ],
+            imageUrls: [
+              '/snail/snail1.png',
+              '/snail/snail2.png',
+              '/snail/snail3.png',
+              '/snail/snail4.png'
+            ],
+            titleImageUrls: [
+              '/snail/snail0.png'
+            ]
+          }
+        }                 
       ];
 
       const matched = predefinedCombos.find(
