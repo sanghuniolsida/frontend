@@ -58,6 +58,15 @@ function StatsPage() {
         borderWidth: 2,
         fill: true,
       },
+      {
+        label: '전체 평균',
+        data: [78, 55, 65, 55], // ← 예시 평균값 (이해력, 기억력, 주의 집중력, 사고력)
+        backgroundColor: 'rgba(160,160,160,0.1)',
+        borderColor: '#7B68EE',
+        borderDash: [4, 4],
+        borderWidth: 1,
+        fill: true,
+     } 
     ],
   };
 
@@ -82,6 +91,7 @@ function StatsPage() {
             ))}
             <div>
               <button className="reset-button" onClick={handleReset}>⮌</button>
+              <span className="legend-label">🟪 평균</span>
             </div>
           </div>
           <div className="radar-wrapper">

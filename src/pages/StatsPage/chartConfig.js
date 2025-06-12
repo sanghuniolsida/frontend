@@ -23,7 +23,7 @@ export const radarOptions = {
         padding: 10,
         callback: (label, index) => {
           const clean = label.replace(/\n/g, '');
-          // 기억력(1)과 언어추론력(3)은 세로로 출력되게 배열로 반환
+          // 기억력(1)과 사고력(3)은 세로로 출력되게 배열로 반환
           if (index === 1 || index === 3) {
             return clean.split('');
           }

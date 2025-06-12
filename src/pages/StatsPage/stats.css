@@ -151,3 +151,8 @@
 .reset-button:hover {
   background-color: #ff5252;
 }
+
+.legend-label {
+  font-size: 10px;
+  margin-left: 50px;
+}
