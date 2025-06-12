@@ -102,27 +102,41 @@ function QuestionSectionPage() {
       if (subject === '친구가 되는 이야기') fixed = '눈 내리는 하얀 나라';
       if (subject === '함께하는 기쁨을 알려주는 이야기') fixed = '별빛이 내리는 숲속';
     } else if (step === 2 && predefinedSubjects.includes(subject)) {
-      if (subject === '서로 다른 속도를 이해하는 이야기' && location === '숲속 유치원') {
-        fixed = '느린 코끼리';
-      }
-      if (subject === '친구의 마음을 이해하는 이야기' && location === '숲속 놀이터') {
-        fixed = '토끼';
-      }
-      if (subject === '친구가 되는 이야기' && location === '눈 내리는 하얀 나라') {
-        fixed = '북극곰';
-      }
-      if (subject === '함께하는 기쁨을 알려주는 이야기' && location === '별빛이 내리는 숲속') {
-        fixed = '고슴도치';
-      }
-
+      if (subject === '서로 다른 속도를 이해하는 이야기' && location === '숲속 유치원') fixed = '느린 코끼리';
+      if (subject === '친구의 마음을 이해하는 이야기' && location === '숲속 놀이터') fixed = '토끼';
+      if (subject === '친구가 되는 이야기' && location === '눈 내리는 하얀 나라') fixed = '북극곰';
+      if (subject === '함께하는 기쁨을 알려주는 이야기' && location === '별빛이 내리는 숲속') fixed = '고슴도치';
     }
 
     const filtered = fixed ? currentOptions.filter(o => o !== fixed) : currentOptions;
-    const randomChoices = shuffle(filtered).slice(0, 2);
-    const finalChoices = fixed ? [...randomChoices, fixed] : randomChoices;
+    const randomChoices = shuffle(filtered).slice(0, fixed ? 2 : 3);
+
+    // 실제 고정 조건을 만족할 때만 포함
+    let includeFixed = false;
+
+    if (step === 0) {
+      includeFixed = true; // 주제는 항상 포함
+    } else if (step === 1) {
+      includeFixed =
+        (subject === '친구의 마음을 이해하는 이야기' && fixed === '숲속 놀이터') ||
+        (subject === '서로 다른 속도를 이해하는 이야기' && fixed === '숲속 유치원') ||
+        (subject === '친구가 되는 이야기' && fixed === '눈 내리는 하얀 나라') ||
+        (subject === '함께하는 기쁨을 알려주는 이야기' && fixed === '별빛이 내리는 숲속');
+    } else if (step === 2) {
+      includeFixed =
+        (subject === '서로 다른 속도를 이해하는 이야기' && location === '숲속 유치원' && fixed === '느린 코끼리') ||
+        (subject === '친구의 마음을 이해하는 이야기' && location === '숲속 놀이터' && fixed === '토끼') ||
+        (subject === '친구가 되는 이야기' && location === '눈 내리는 하얀 나라' && fixed === '북극곰') ||
+        (subject === '함께하는 기쁨을 알려주는 이야기' && location === '별빛이 내리는 숲속' && fixed === '고슴도치');
+    }
+
+    const finalChoices = includeFixed && fixed
+      ? [...randomChoices, fixed]
+      : randomChoices;
 
     setShuffledChoices(prev => ({ ...prev, [step]: finalChoices }));
   }, [step, answers, current.options]);
+
 
 
 
